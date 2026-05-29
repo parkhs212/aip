@@ -254,9 +254,18 @@ export default function AnswersPage() {
             추가
           </button>
         </div>
-        <div className="flex items-center justify-between mt-1.5">
-          <p className={`text-xs ${feedback ? (feedback.ok ? 'text-green-600' : 'text-red-500') : 'text-transparent'}`}>
-            {feedback?.msg ?? '.'}
+        <p className={`text-xs mt-1.5 ${feedback ? (feedback.ok ? 'text-green-600' : 'text-red-500') : 'text-transparent'}`}>
+          {feedback?.msg ?? '.'}
+        </p>
+      </div>
+
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-base font-bold text-gray-700">
+          정답 목록 <span className="text-gray-400 font-normal">({problems.length}문제)</span>
+        </h1>
+        <div className="flex items-center gap-2">
+          <p className="text-xs text-gray-400">
+            <span className="text-green-600 font-semibold">초록</span> = 전체 1회 등장 단어 · 옆 <span className="text-red-400 font-bold">×</span> 로 제거
           </p>
           {(totalGreen > 0 || excluded.size > 0) && (
             <button
@@ -265,21 +274,12 @@ export default function AnswersPage() {
                   saveCustom([]); saveExcluded(new Set())
                 }
               }}
-              className="text-xs text-gray-300 hover:text-red-400"
+              className="text-xs px-2 py-1 rounded-lg border border-gray-200 text-gray-400 hover:border-red-300 hover:text-red-400 hover:bg-red-50 transition-colors"
             >
               전체 초기화
             </button>
           )}
         </div>
-      </div>
-
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-base font-bold text-gray-700">
-          정답 목록 <span className="text-gray-400 font-normal">({problems.length}문제)</span>
-        </h1>
-        <p className="text-xs text-gray-400">
-          <span className="text-green-600 font-semibold">초록</span> = 전체 1회 등장 단어 · 옆 <span className="text-red-400 font-bold">×</span> 로 제거
-        </p>
       </div>
 
       <div className="space-y-4">

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useMemo, useCallback } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { api, Problem } from '@/lib/api'
 
 const LETTERS = 'ABCDEF'
@@ -183,15 +183,6 @@ export default function AnswersPage() {
   const [feedback, setFeedback] = useState<{ msg: string; ok: boolean } | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-  const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set())
-
-  const toggleExpand = useCallback((id: number) => {
-    setExpandedIds(prev => {
-      const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
-      return next
-    })
-  }, [])
 
   useEffect(() => {
     api.getAllProblems()
@@ -291,29 +282,17 @@ export default function AnswersPage() {
         </p>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-4">
         {problems.map((p, qi) => {
           const correct = p.choices?.filter(c => c.is_correct) ?? []
-          const letters = correct.map(c => LETTERS[c.order_num]).join(', ')
-          const expanded = expandedIds.has(p.id)
           return (
-            <div key={p.id} className="bg-white rounded-xl border border-gray-100 overflow-hidden">
-              <button
-                onClick={() => toggleExpand(p.id)}
-                className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors"
-              >
+            <div key={p.id} className="bg-white rounded-xl border border-gray-100 px-4 py-5">
+              <div className="flex items-baseline gap-3">
                 <span className="text-xs font-semibold text-gray-400 shrink-0 w-8">Q{qi + 1}</span>
-                <span className="flex-1 text-xs text-gray-400 truncate">
-                  {fmt(correct[0]?.content ?? '')}
-                </span>
-                <span className="shrink-0 text-lg font-bold text-green-600 w-10 text-right">{letters}</span>
-                <span className="shrink-0 text-gray-300 text-xs">{expanded ? '▲' : '▼'}</span>
-              </button>
-              {expanded && (
-                <div className="border-t border-gray-50 px-4 py-3 flex flex-col gap-1">
+                <div className="flex flex-col gap-1 flex-1">
                   {correct.map(c => (
                     <p key={c.id} className="text-sm leading-relaxed">
-                      <span className="font-bold text-green-600 mr-1">{LETTERS[c.order_num]}.</span>
+                      <span className="font-bold text-gray-500 mr-1">{LETTERS[c.order_num]}.</span>
                       <HighlightedText
                         text={fmt(c.content)}
                         wordFreq={wordFreq}
@@ -325,7 +304,7 @@ export default function AnswersPage() {
                     </p>
                   ))}
                 </div>
-              )}
+              </div>
             </div>
           )
         })}

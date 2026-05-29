@@ -274,7 +274,7 @@ export default function AnswersPage() {
                   saveCustom([]); saveExcluded(new Set())
                 }
               }}
-              className="text-xs px-2 py-1 rounded-lg border border-gray-200 text-gray-400 hover:border-red-300 hover:text-red-400 hover:bg-red-50 transition-colors"
+              className="text-xs px-2 py-1 rounded-lg border border-red-200 text-red-400 hover:border-red-400 hover:bg-red-50 transition-colors"
             >
               전체 초기화
             </button>

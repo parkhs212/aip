@@ -1,7 +1,11 @@
 'use client'
 import { useEffect, useState, useMemo } from 'react'
-import { api, Problem, choiceText } from '@/lib/api'
+import { api, Problem, Lang, choiceText } from '@/lib/api'
 import { useLang, LangToggle } from '@/lib/lang'
+import greenPhrasesData from '@/lib/greenPhrases.json'
+
+// 정답에서 선별한 핵심 문구(언어별). 전체 1회 등장하는 것만 등록됨.
+const DEFAULT_GREEN: Record<Lang, string[]> = greenPhrasesData as Record<Lang, string[]>
 
 const LETTERS = 'ABCDEF'
 const LS_CUSTOM = 'aip-custom-green'
@@ -47,11 +51,17 @@ function stripParticles(word: string): string {
   return word
 }
 
-function buildWordFreq(problems: Problem[]): Map<string, number> {
+/** 해당 언어의 문제 본문 + 모든 선택지 텍스트 목록. */
+function problemTexts(p: Problem, lang: Lang): string[] {
+  const body = lang === 'en' ? (p.content_en ?? p.content) : p.content
+  const choices = p.choices?.map(c => (lang === 'en' ? (c.content_en ?? c.content) : c.content)) ?? []
+  return [fmt(body), ...choices.map(fmt)]
+}
+
+function buildWordFreq(problems: Problem[], lang: Lang): Map<string, number> {
   const freq = new Map<string, number>()
   for (const p of problems) {
-    const texts = [fmt(p.content), ...(p.choices?.map(c => fmt(c.content)) ?? [])]
-    for (const text of texts) {
+    for (const text of problemTexts(p, lang)) {
       for (const token of text.split(/\s+/)) {
         const w = normalizeWord(token)
         if (w.length < 2) continue
@@ -64,12 +74,11 @@ function buildWordFreq(problems: Problem[]): Map<string, number> {
   return freq
 }
 
-function countPhrase(phrase: string, problems: Problem[]): number {
+function countPhrase(phrase: string, problems: Problem[], lang: Lang): number {
   const term = phrase.toLowerCase()
   let count = 0
   for (const p of problems) {
-    const texts = [fmt(p.content), ...(p.choices?.map(c => fmt(c.content)) ?? [])]
-    for (const text of texts) {
+    for (const text of problemTexts(p, lang)) {
       let idx = 0
       const lc = text.toLowerCase()
       while ((idx = lc.indexOf(term, idx)) !== -1) { count++; idx++ }
@@ -178,7 +187,8 @@ function loadLS(key: string, fallback: string[] = []): string[] {
 export default function AnswersPage() {
   const [lang, setLang] = useLang()
   const [problems, setProblems] = useState<Problem[]>([])
-  const [wordFreq, setWordFreq] = useState<Map<string, number>>(new Map())
+  const [wordFreqByLang, setWordFreqByLang] = useState<Record<Lang, Map<string, number>>>({ ko: new Map(), en: new Map() })
+  const wordFreq = wordFreqByLang[lang]
   const [customGreen, setCustomGreen] = useState<string[]>([])
   const [excluded, setExcluded] = useState<Set<string>>(new Set())
   const [input, setInput] = useState('')
@@ -190,7 +200,7 @@ export default function AnswersPage() {
     api.getAllProblems()
       .then(ps => {
         setProblems(ps)
-        setWordFreq(buildWordFreq(ps))
+        setWordFreqByLang({ ko: buildWordFreq(ps, 'ko'), en: buildWordFreq(ps, 'en') })
         setLoading(false)
       })
       .catch(e => { setError(e.message); setLoading(false) })
@@ -210,7 +220,7 @@ export default function AnswersPage() {
   const handleAdd = () => {
     const phrase = input.trim()
     if (!phrase || problems.length === 0) return
-    const count = countPhrase(phrase, problems)
+    const count = countPhrase(phrase, problems, lang)
     if (count === 1) {
       if (!customGreen.includes(phrase)) saveCustom([...customGreen, phrase])
       const ex = new Set(excluded); ex.delete(phrase.toLowerCase()); saveExcluded(ex)
@@ -236,6 +246,11 @@ export default function AnswersPage() {
   if (error) return <div className="text-center py-20 text-red-400">{error}</div>
 
   const totalGreen = customGreen.filter(p => !excluded.has(p.toLowerCase())).length
+
+  // 기본(자동) 핵심 문구 + 사용자 추가 문구 병합. 긴 문구가 먼저 매칭되도록 길이순 정렬.
+  const greenPhrases = [...(DEFAULT_GREEN[lang] ?? []), ...customGreen]
+    .filter((p, i, arr) => arr.findIndex(q => q.toLowerCase() === p.toLowerCase()) === i)
+    .sort((a, b) => b.length - a.length)
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -298,18 +313,14 @@ export default function AnswersPage() {
                   {correct.map(c => (
                     <p key={c.id} className="text-sm leading-relaxed">
                       <span className="font-bold text-gray-500 mr-1">{LETTERS[c.order_num]}.</span>
-                      {lang === 'ko' ? (
-                        <HighlightedText
-                          text={fmt(c.content)}
-                          wordFreq={wordFreq}
-                          customGreen={customGreen}
-                          excluded={excluded}
-                          onExcludeWord={onExcludeWord}
-                          onRemovePhrase={onRemovePhrase}
-                        />
-                      ) : (
-                        <span className="text-gray-800">{fmt(choiceText(c, 'en'))}</span>
-                      )}
+                      <HighlightedText
+                        text={fmt(choiceText(c, lang))}
+                        wordFreq={wordFreq}
+                        customGreen={greenPhrases}
+                        excluded={excluded}
+                        onExcludeWord={onExcludeWord}
+                        onRemovePhrase={onRemovePhrase}
+                      />
                     </p>
                   ))}
                 </div>

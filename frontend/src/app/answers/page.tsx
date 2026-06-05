@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState, useMemo } from 'react'
-import { api, Problem } from '@/lib/api'
+import { api, Problem, choiceText } from '@/lib/api'
+import { useLang, LangToggle } from '@/lib/lang'
 
 const LETTERS = 'ABCDEF'
 const LS_CUSTOM = 'aip-custom-green'
@@ -175,6 +176,7 @@ function loadLS(key: string, fallback: string[] = []): string[] {
 }
 
 export default function AnswersPage() {
+  const [lang, setLang] = useLang()
   const [problems, setProblems] = useState<Problem[]>([])
   const [wordFreq, setWordFreq] = useState<Map<string, number>>(new Map())
   const [customGreen, setCustomGreen] = useState<string[]>([])
@@ -260,9 +262,12 @@ export default function AnswersPage() {
       </div>
 
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-base font-bold text-gray-700">
-          정답 목록 <span className="text-gray-400 font-normal">({problems.length}문제)</span>
-        </h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-base font-bold text-gray-700">
+            정답 목록 <span className="text-gray-400 font-normal">({problems.length}문제)</span>
+          </h1>
+          <LangToggle lang={lang} setLang={setLang} />
+        </div>
         <div className="flex items-center gap-2">
           <p className="text-xs text-gray-400">
             <span className="text-green-600 font-semibold">초록</span> = 전체 1회 등장 단어 · 옆 <span className="text-red-400 font-bold">×</span> 로 제거
@@ -293,14 +298,18 @@ export default function AnswersPage() {
                   {correct.map(c => (
                     <p key={c.id} className="text-sm leading-relaxed">
                       <span className="font-bold text-gray-500 mr-1">{LETTERS[c.order_num]}.</span>
-                      <HighlightedText
-                        text={fmt(c.content)}
-                        wordFreq={wordFreq}
-                        customGreen={customGreen}
-                        excluded={excluded}
-                        onExcludeWord={onExcludeWord}
-                        onRemovePhrase={onRemovePhrase}
-                      />
+                      {lang === 'ko' ? (
+                        <HighlightedText
+                          text={fmt(c.content)}
+                          wordFreq={wordFreq}
+                          customGreen={customGreen}
+                          excluded={excluded}
+                          onExcludeWord={onExcludeWord}
+                          onRemovePhrase={onRemovePhrase}
+                        />
+                      ) : (
+                        <span className="text-gray-800">{fmt(choiceText(c, 'en'))}</span>
+                      )}
                     </p>
                   ))}
                 </div>

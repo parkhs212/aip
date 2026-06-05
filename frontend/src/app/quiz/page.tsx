@@ -1,7 +1,8 @@
 'use client'
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { api, Problem } from '@/lib/api'
+import { api, Problem, problemText, choiceText } from '@/lib/api'
+import { useLang, LangToggle } from '@/lib/lang'
 
 const LETTERS = 'ABCDEF'
 
@@ -22,6 +23,7 @@ function QuizContent() {
   const searchParams = useSearchParams()
   const mode = searchParams.get('mode') === 'random' ? 'random' : 'sequential'
 
+  const [lang, setLang] = useLang()
   const [problems, setProblems] = useState<Problem[]>([])
   const [order, setOrder] = useState<number[]>([])
   const [cursor, setCursor] = useState(0)
@@ -102,12 +104,15 @@ function QuizContent() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* 모드 + 진행률 */}
+      {/* 모드 + 진행률 + 언어 토글 */}
       <div className="flex items-center justify-between text-xs mb-2">
         <span className={`font-semibold ${modeColor}`}>
           {mode === 'random' ? '랜덤 풀기' : '순서대로 풀기'}
         </span>
-        <span className="text-gray-400">{cursor + 1} / {problems.length} · Q{qNum}</span>
+        <div className="flex items-center gap-2">
+          <LangToggle lang={lang} setLang={setLang} />
+          <span className="text-gray-400">{cursor + 1} / {problems.length} · Q{qNum}</span>
+        </div>
       </div>
       <div className="w-full bg-gray-200 rounded-full h-1 mb-6">
         <div className={`h-1 rounded-full transition-all ${barColor}`} style={{ width: `${progress}%` }} />
@@ -119,7 +124,7 @@ function QuizContent() {
           <p className="text-xs font-semibold text-amber-500 mb-2">{correctCount}개를 선택하세요</p>
         )}
         <p className="text-gray-800 leading-relaxed text-sm sm:text-base">
-          {fmt(problem.content)}
+          {fmt(problemText(problem, lang))}
         </p>
       </div>
 
@@ -155,7 +160,7 @@ function QuizContent() {
               className={`w-full text-left px-4 py-3 rounded-xl transition-colors text-sm sm:text-base ${cls}`}
             >
               <span className="font-bold mr-2">{LETTERS[i]}.</span>
-              {fmt(c.content)}
+              {fmt(choiceText(c, lang))}
             </button>
           )
         })}

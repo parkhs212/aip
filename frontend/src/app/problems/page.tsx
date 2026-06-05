@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { api, Problem } from '@/lib/api'
+import { api, Problem, problemText, choiceText } from '@/lib/api'
+import { useLang, LangToggle } from '@/lib/lang'
 
 const DIFFICULTY_COLOR: Record<string, string> = {
   '하': 'bg-green-100 text-green-700',
@@ -14,6 +15,7 @@ export default function ProblemsPage() {
   const [filterCat, setFilterCat] = useState('')
   const [filterDiff, setFilterDiff] = useState('')
   const [selected, setSelected] = useState<Problem | null>(null)
+  const [lang, setLang] = useLang()
 
   useEffect(() => {
     api.getCategories().then(setCategories).catch(() => {})
@@ -26,7 +28,10 @@ export default function ProblemsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">문제 목록</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold">문제 목록</h1>
+        <LangToggle lang={lang} setLang={setLang} />
+      </div>
 
       {/* 필터 */}
       <div className="flex gap-3 mb-6 flex-wrap">
@@ -48,13 +53,13 @@ export default function ProblemsPage() {
           <button key={p.id} onClick={() => setSelected(p)}
             className="w-full text-left bg-white rounded-xl border border-gray-200 p-4 hover:border-blue-400 hover:shadow-sm transition">
             <div className="flex items-center justify-between">
-              <span className="font-medium text-gray-800">{p.title}</span>
+              <span className="font-medium text-gray-800">{lang === 'en' ? (p.title_en ?? p.title) : p.title}</span>
               <div className="flex gap-2">
                 {p.category && <span className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded">{p.category}</span>}
                 <span className={`text-xs px-2 py-1 rounded ${DIFFICULTY_COLOR[p.difficulty ?? ''] || ''}`}>{p.difficulty}</span>
               </div>
             </div>
-            <p className="text-sm text-gray-500 mt-1 line-clamp-2">{p.content}</p>
+            <p className="text-sm text-gray-500 mt-1 line-clamp-2">{problemText(p, lang)}</p>
           </button>
         ))}
         {problems.length === 0 && <p className="text-gray-400 text-center py-12">문제가 없습니다</p>}
@@ -66,14 +71,17 @@ export default function ProblemsPage() {
           onClick={() => setSelected(null)}>
           <div className="bg-white rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto"
             onClick={e => e.stopPropagation()}>
-            <h2 className="text-xl font-bold mb-2">{selected.title}</h2>
-            <p className="text-gray-700 mb-4">{selected.content}</p>
+            <div className="flex items-center justify-between mb-2 gap-2">
+              <h2 className="text-xl font-bold">{lang === 'en' ? (selected.title_en ?? selected.title) : selected.title}</h2>
+              <LangToggle lang={lang} setLang={setLang} />
+            </div>
+            <p className="text-gray-700 mb-4">{problemText(selected, lang)}</p>
             {selected.choices && (
               <div className="space-y-2">
                 {selected.choices.map(c => (
                   <div key={c.id}
                     className={`p-3 rounded-lg border text-sm ${c.is_correct ? 'border-green-400 bg-green-50 font-medium text-green-800' : 'border-gray-200 text-gray-600'}`}>
-                    {c.is_correct && <span className="mr-1">✓</span>}{c.content}
+                    {c.is_correct && <span className="mr-1">✓</span>}{choiceText(c, lang)}
                   </div>
                 ))}
               </div>

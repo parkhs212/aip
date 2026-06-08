@@ -51,11 +51,10 @@ function stripParticles(word: string): string {
   return word
 }
 
-/** 해당 언어의 문제 본문 + 모든 선택지 텍스트 목록. */
+/** 해당 언어의 모든 선택지 텍스트 목록. (문제 본문은 제외 — 선택지에서만 비교) */
 function problemTexts(p: Problem, lang: Lang): string[] {
-  const body = lang === 'en' ? (p.content_en ?? p.content) : p.content
   const choices = p.choices?.map(c => (lang === 'en' ? (c.content_en ?? c.content) : c.content)) ?? []
-  return [fmt(body), ...choices.map(fmt)]
+  return choices.map(fmt)
 }
 
 function buildWordFreq(problems: Problem[], lang: Lang): Map<string, number> {
@@ -228,7 +227,7 @@ export default function AnswersPage() {
     } else if (count === 0) {
       setFeedback({ msg: `"${phrase}" — 찾을 수 없음`, ok: false })
     } else {
-      setFeedback({ msg: `"${phrase}" — 전체 ${count}회 등장 (1회만 가능)`, ok: false })
+      setFeedback({ msg: `"${phrase}" — 선택지에 ${count}회 등장 (1회만 가능)`, ok: false })
     }
     setInput('')
     setTimeout(() => setFeedback(null), 3000)
@@ -261,7 +260,7 @@ export default function AnswersPage() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleAdd()}
-            placeholder="추가할 문구 입력 후 Enter (전체 1회 등장 시 초록 추가)"
+            placeholder="추가할 문구 입력 후 Enter (선택지에 1회 등장 시 초록 추가)"
             className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 shadow-sm"
           />
           <button
@@ -285,7 +284,7 @@ export default function AnswersPage() {
         </div>
         <div className="flex items-center gap-2">
           <p className="text-xs text-gray-400">
-            <span className="text-green-600 font-semibold">초록</span> = 전체 1회 등장 단어 · 옆 <span className="text-red-400 font-bold">×</span> 로 제거
+            <span className="text-green-600 font-semibold">초록</span> = 선택지에 1회 등장 단어 · 옆 <span className="text-red-400 font-bold">×</span> 로 제거
           </p>
           {(totalGreen > 0 || excluded.size > 0) && (
             <button

@@ -3786,49 +3786,6 @@
     ]
   },
   {
-    "id": 87,
-    "title": "Q87. 한 금융 서비스 회사가 고객 서비스 담당자가 고객에게 개인화된 투자 ...",
-    "title_en": "Q87. 한 금융 서비스 회사가 고객 서비스 담당자가 고객에게 개인화된 투자 ...",
-    "content": "한 금융 서비스 회사가 고객 서비스 담당자가 고객에게 개인화된 투자 조언을 제공할 수 있도록 Amazon Bedrock 을 사용하는 생성형 AI(GenAI) 애플리케이션을 배포하고 있습니다. 이 회사는 책임 있는 AI 관행을 준수하고 규제 요건을 충족하는 포괄적인 거버넌스 솔루션을 구현해야 합니다. 이 솔루션은 추천 내용에서 발생하는 오류(환상)를 감지하고 방지해야 합니다. 또한 고객 상호 작용에 대한 안전 제어 기능을 갖춰야 합니다. 모델 동작의 변화를 실시간으로 모니터링하고 규제 검토를 위해 모든 응답-답변 쌍에 대한 감사 추적을 유지해야 합니다. 이 회사는 60 일 이내에 솔루션을 배포해야 하며, 기존 규정 준수 대시보드와 통합되고 200ms 이내에 고객 문의에 응답해야 합니다. 이러한 요구 사항을 가장 적은 운영 오버헤드로 충족하는 솔루션은 무엇일까요?",
-    "content_en": "한 금융 서비스 회사가 고객 서비스 담당자가 고객에게 개인화된 투자 조언을 제공할 수 있도록 Amazon Bedrock 을 사용하는 생성형 AI(GenAI) 애플리케이션을 배포하고 있습니다. 이 회사는 책임 있는 AI 관행을 준수하고 규제 요건을 충족하는 포괄적인 거버넌스 솔루션을 구현해야 합니다. 이 솔루션은 추천 내용에서 발생하는 오류(환상)를 감지하고 방지해야 합니다. 또한 고객 상호 작용에 대한 안전 제어 기능을 갖춰야 합니다. 모델 동작의 변화를 실시간으로 모니터링하고 규제 검토를 위해 모든 응답-답변 쌍에 대한 감사 추적을 유지해야 합니다. 이 회사는 60 일 이내에 솔루션을 배포해야 하며, 기존 규정 준수 대시보드와 통합되고 200ms 이내에 고객 문의에 응답해야 합니다. 이러한 요구 사항을 가장 적은 운영 오버헤드로 충족하는 솔루션은 무엇일까요?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 8700,
-        "problem_id": 87,
-        "content": "Amazon Bedrock 가드레일을 구성하여 사용자 지정 콘텐츠 필터 및 유해성 감지 기능을 적용합니다. Amazon Bedrock 모델 평가를 사용하여 오류(환상)를 감지합니다. 응답-답변 쌍을 Amazon DynamoDB 에 저장하여 감사 추적을 캡처하고 TTL(Time To Live)을 설정합니다. Amazon CloudWatch 사용자 지정 메트릭을 기존 규정 준수 대시보드와 통합합니다.",
-        "content_en": "Amazon Bedrock 가드레일을 구성하여 사용자 지정 콘텐츠 필터 및 유해성 감지 기능을 적용합니다. Amazon Bedrock 모델 평가를 사용하여 오류(환상)를 감지합니다. 응답-답변 쌍을 Amazon DynamoDB 에 저장하여 감사 추적을 캡처하고 TTL(Time To Live)을 설정합니다. Amazon CloudWatch 사용자 지정 메트릭을 기존 규정 준수 대시보드와 통합합니다.",
-        "is_correct": true,
-        "order_num": 0
-      },
-      {
-        "id": 8701,
-        "problem_id": 87,
-        "content": "Amazon Bedrock 을 배포하고 AWS PrivateLink 를 사용하여 애플리케이션에 안전하게 액세스합니다. AWS Lambda 함수를 사용하여 사용자 지정 프롬프트 유효성 검사를 구현합니다. 프롬프트-응답 쌍을 Amazon S3 버킷에 저장하고 S3 수명 주기 정책을 구성합니다. 모델 성능 지표를 모니터링하기 위해 사용자 지정 Amazon CloudWatch 대시보드를 생성합니다.",
-        "content_en": "Amazon Bedrock 을 배포하고 AWS PrivateLink 를 사용하여 애플리케이션에 안전하게 액세스합니다. AWS Lambda 함수를 사용하여 사용자 지정 프롬프트 유효성 검사를 구현합니다. 프롬프트-응답 쌍을 Amazon S3 버킷에 저장하고 S3 수명 주기 정책을 구성합니다. 모델 성능 지표를 모니터링하기 위해 사용자 지정 Amazon CloudWatch 대시보드를 생성합니다.",
-        "is_correct": false,
-        "order_num": 1
-      },
-      {
-        "id": 8702,
-        "problem_id": 87,
-        "content": "Amazon Bedrock 에이전트와 Amazon Bedrock 지식 기반을 사용하여 응답을 검증합니다. Amazon Bedrock Guardrails 를 사용하여 콘텐츠 안전성을 강화합니다. Amazon OpenSearch Service 를 사용하여 프롬프트-응답 쌍을 저장하고 색인을 생성합니다. OpenSearch Service 를 Amazon QuickSight 와 통합하여 규정 준수 보고서를 생성하고 모델 동작 변화를 감지합니다.",
-        "content_en": "Amazon Bedrock 에이전트와 Amazon Bedrock 지식 기반을 사용하여 응답을 검증합니다. Amazon Bedrock Guardrails 를 사용하여 콘텐츠 안전성을 강화합니다. Amazon OpenSearch Service 를 사용하여 프롬프트-응답 쌍을 저장하고 색인을 생성합니다. OpenSearch Service 를 Amazon QuickSight 와 통합하여 규정 준수 보고서를 생성하고 모델 동작 변화를 감지합니다.",
-        "is_correct": false,
-        "order_num": 2
-      },
-      {
-        "id": 8703,
-        "problem_id": 87,
-        "content": "Amazon SageMaker Model Monitor 를 사용하여 모델 동작 변화를 감지합니다. AWS WAF 를 사용하여 콘텐츠를 필터링합니다. 고객 상호 작용을 암호화된 Amazon RDS 데이터베이스에 저장합니다. Amazon API Gateway 를 사용하여 규정 준수 대시보드와 통합할 사용자 지정 HTTP API 를 생성합니다.",
-        "content_en": "Amazon SageMaker Model Monitor 를 사용하여 모델 동작 변화를 감지합니다. AWS WAF 를 사용하여 콘텐츠를 필터링합니다. 고객 상호 작용을 암호화된 Amazon RDS 데이터베이스에 저장합니다. Amazon API Gateway 를 사용하여 규정 준수 대시보드와 통합할 사용자 지정 HTTP API 를 생성합니다.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
     "id": 88,
     "title": "Q88. 한 회사가 Amazon Bedrock Knowledge Bases 를...",
     "title_en": "Q88. A company runs a Retrieval Augmented G...",
@@ -4912,49 +4869,6 @@
     ]
   },
   {
-    "id": 113,
-    "title": "Q113. 한 제약 회사가 Amazon Bedrock 지식 기반을 사용하는 검색...",
-    "title_en": "Q113. A pharmaceutical company is developing...",
-    "content": "한 제약 회사가 Amazon Bedrock 지식 기반을 사용하는 검색 증강 생성(RAG) 애플리케이션을 개발하고 있습니다. 지식 기반은 2,500만 개 이상의 과학 논문에 대한 데이터 소스로 Amazon OpenSearch Service 를 사용합니다. 사용자들은 쿼리가 논문의 방법론, 결과, 논의 섹션에 걸쳐 있을 때 애플리케이션이 논문의 관련 없는 섹션을 인용하는 일관되지 않은 답변을 생성한다고 보고합니다.\n회사는 전체 데이터 코퍼스 규모에서 관련 단락 전반에 걸쳐 의미적 컨텍스트를 보존하도록 지식 기반을 개선해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "A pharmaceutical company is developing a Retrieval Augmented Generation application that uses an Amazon Bedrock knowledge base. The knowledge base uses Amazon OpenSearch Service as a data source for more than 25 million scientific papers. Users report that the application produces inconsistent answers that cite irrelevant sections of papers when queries span methodology, results, and discussion sections of the papers. The company needs to improve the knowledge base to preserve semantic context across related paragraphs on the scale of the entire corpus of data. Which solution will meet these requirements?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 11300,
-        "problem_id": 113,
-        "content": "고정 크기 청킹을 사용하도록 지식 기반을 구성합니다. 최대 청크 크기를 300토큰으로 설정하고 청크 간 10% 중첩을 설정합니다. 적절한 Amazon Bedrock 임베딩 모델을 사용합니다.",
-        "content_en": "Configure the knowledge base to use fixed-size chunking. Set a 300-token maximum chunk size and a 10% overlap between chunks. Use an appropriate Amazon Bedrock embedding model.",
-        "is_correct": false,
-        "order_num": 0
-      },
-      {
-        "id": 11301,
-        "problem_id": 113,
-        "content": "계층적 청킹을 사용하도록 지식 기반을 구성합니다. 1,000토큰을 포함하는 부모 청크와 200토큰을 포함하는 자식 청크를 사용합니다. 청크 간 50토큰 중첩을 설정합니다.",
-        "content_en": "Configure the knowledge base to use hierarchical chunking. Use parent chunks that contain 1,000 tokens and child chunks that contain 200 tokens. Set a 50-token overlap between chunks.",
-        "is_correct": true,
-        "order_num": 1
-      },
-      {
-        "id": 11302,
-        "problem_id": 113,
-        "content": "의미적 청킹을 사용하도록 지식 기반을 구성합니다. 버퍼 크기 1과 85% 의 중단점 백분위 임계값을 사용하여 콘텐츠 의미를 기반으로 청크 경계를 결정합니다.",
-        "content_en": "Configure the knowledge base to use semantic chunking. Use a buffer size of 1 and a breakpoint percentile threshold of 85% to determine chunk boundaries based on content meaning.",
-        "is_correct": false,
-        "order_num": 2
-      },
-      {
-        "id": 11303,
-        "problem_id": 113,
-        "content": "청킹을 사용하지 않도록 지식 기반을 구성합니다. 수집 전에 각 문서를 별도의 파일로 수동으로 분할합니다. 검색 중 사후 처리 리랭킹을 적용합니다.",
-        "content_en": "Configure the knowledge base not to use chunking. Manually split each document into separate files before ingestion. Apply post-processing reranking during retrieval.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
     "id": 114,
     "title": "Q114. 한 소매 회사가 회사 웹사이트에서 고객에게 제품 추천을 하는 애플리케...",
     "title_en": "Q114. A retail company runs an application t...",
@@ -5610,49 +5524,6 @@
         "problem_id": 128,
         "content": "프롬프트 템플릿을 Amazon S3 에 저장합니다. S3 Object Lock 을 사용하여 버전 관리를 구현합니다. Amazon EventBridge 를 사용하여 모델 호출을 추적합니다. AWS Config 를 사용하여 프롬프트 템플릿 변경을 모니터링합니다.",
         "content_en": "Store prompt templates in Amazon S3. Use S3 Object Lock to implement version control. Use Amazon EventBridge to track model invocations. Use AWS Config to monitor changes to prompt templates.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
-    "id": 129,
-    "title": "Q129. 한 회사가 Amazon Bedrock 을 사용하여 민감한 고객 문의를...",
-    "title_en": "Q129. A company is using Amazon Bedrock to b...",
-    "content": "한 회사가 Amazon Bedrock 을 사용하여 민감한 고객 문의를 처리하는 고객 대면 AI 어시스턴트를 구축하고 있습니다. 이 회사는 정교한 프롬프트 주입 공격을 차단하기 위해 심층 방어 보안 제어를 사용해야 합니다. 또한 모든 보안 조치에 대한 감사 로그를 보관해야 합니다. AI 어시스턴트는 리전 간 장애 조치 기능을 갖춰야 합니다. 이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "A company is using Amazon Bedrock to build a customer-facing AI assistant that handles sensitive customer inquiries. The company must use defense-in-depth safety controls to block sophisticated prompt injection attacks. The company must keep audit logs of all safety interventions. The AI assistant must have cross- Region failover capabilities. Which solution will meet these requirements?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 12900,
-        "problem_id": 129,
-        "content": "프롬프트 주입 공격을 방지하기 위해 콘텐츠 필터를 사용하도록 Amazon Bedrock 가드레일을 구성합니다. 콘텐츠 필터 수준을 높음으로 설정합니다. 가드레일 프로필을 사용하여 리전 간 가드레일 추론을 구현합니다. 자세한 가드레일 개입 이벤트를 캡처하기 위해 사용자 지정 메트릭이 있는 Amazon CloudWatch Logs 를 사용합니다.",
-        "content_en": "Configure Amazon Bedrock guardrails with content filters set to high to protect against prompt injection attacks. Use a guardrail profile to implement cross-Region guardrail inference. Use Amazon CloudWatch Logs with custom metrics to capture detailed guardrail intervention events.",
-        "is_correct": true,
-        "order_num": 0
-      },
-      {
-        "id": 12901,
-        "problem_id": 129,
-        "content": "프롬프트 주입 공격을 방지하기 위해 콘텐츠 필터를 사용하도록 Amazon Bedrock 가드레일을 구성합니다. 콘텐츠 필터 수준을 높음으로 설정합니다. 의심스러운 입력을 차단하기 위해 AWS WAF 를 사용합니다. 감사 목적으로 API 호출을 로깅하기 위해 AWS CloudTrail 을 사용합니다.",
-        "content_en": "Configure Amazon Bedrock guardrails with content filters set to high. Use AWS WAF to block suspicious inputs. Use AWS CloudTrail to log API calls.",
-        "is_correct": false,
-        "order_num": 1
-      },
-      {
-        "id": 12902,
-        "problem_id": 129,
-        "content": "프롬프트 주입 공격을 탐지하기 위해 Amazon Comprehend 사용자 지정 분류를 배포합니다. 요청의 유효성을 검사하기 위해 Amazon API Gateway 를 사용합니다. 자세한 개입 이벤트를 캡처하기 위해 사용자 지정 메트릭이 있는 Amazon CloudWatch Logs 를 사용합니다.",
-        "content_en": "Deploy Amazon Comprehend custom classifiers to detect prompt injection attacks. Use Amazon API Gateway request validation. Use CloudWatch Logs to capture intervention events.",
-        "is_correct": false,
-        "order_num": 2
-      },
-      {
-        "id": 12903,
-        "problem_id": 129,
-        "content": "유해 콘텐츠로부터 보호하기 위해 사용자 지정 콘텐츠 필터를 사용하도록 Amazon Bedrock 가드레일을 구성합니다. 콘텐츠 필터 수준을 높게 설정합니다. 알려진 공격 패턴으로부터 보호하기 위해 단어 필터를 사용합니다. 장애 조치 기능을 제공하기 위해 리전 간 가드레일 복제를 구성합니다. 규정 준수 감사를 위해 로그를 AWS CloudTrail 에 저장합니다.",
-        "content_en": "Configure Amazon Bedrock guardrails with custom content filters and word filters set to high. Configure cross-Region guardrail replication for failover. Store logs in AWS CloudTrail for compliance auditing.",
         "is_correct": false,
         "order_num": 3
       }

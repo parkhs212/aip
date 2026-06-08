@@ -4224,92 +4224,6 @@
     ]
   },
   {
-    "id": 98,
-    "title": "Q98. 한 엘리베이터 서비스 회사가 Amazon Bedrock 을 사용하여 ...",
-    "title_en": "Q98. An elevator service company has develo...",
-    "content": "한 엘리베이터 서비스 회사가 Amazon Bedrock 을 사용하여 AI 어시스턴트 애플리케이션을 개발했습니다. 이 애플리케이션은 회사의 엘리베이터 기술자를 지원하기 위해 엘리베이터 유지보수 권장 사항을 생성합니다.\n회사는 Amazon Kinesis Data Streams 를 사용하여 엘리베이터 센서 데이터를 수집합니다.\n새로운 규제 규칙에 따라 인간 기술자가 모든 AI 생성 권장 사항을 검토해야 합니다. 회사는 AI 권장 사항을 검토하고 승인하기 위한 인간 감독 워크플로를 구축해야 합니다. 회사는 감사 목적으로 모든 인간 기술자의 검토 결정을 저장해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "An elevator service company has developed an AI assistant application by using Amazon Bedrock. The application generates elevator maintenance recommendations to support the company's elevator technicians. The company uses Amazon Kinesis Data Streams to collect the elevator sensor data. New regulatory rules require that a human technician must review all AI-generated recommendations. The company needs to establish human oversight workflows to review and approve AI recommendations. The company must store all human technician review decisions for audit purposes. Which solution will meet these requirements?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 9800,
-        "problem_id": 98,
-        "content": "인간 승인 단계가 있는 AWS Glue 워크플로를 생성합니다. 인간 기술자 검토 후, SendTaskSuccess API 를 호출하는 AWS Lambda 함수와 애플리케이션을 통합합니다. 모든 인간 기술자 검토 결정을 Amazon DynamoDB 에 저장합니다.",
-        "content_en": "Create an AWS Glue workflow that has a human approval step. After the human technician review, integrate the application with an AWS Lambda function that calls the SendTaskSuccess API. Store all human technician review decisions in Amazon DynamoDB",
-        "is_correct": false,
-        "order_num": 0
-      },
-      {
-        "id": 9801,
-        "problem_id": 98,
-        "content": "waitForTaskToken API 를 사용하여 실행을 일시 중지하는 인간 승인 단계가 있는 AWS Step Functions 워크플로를 생성합니다. 인간 기술자가 검토를 완료하면, AWS Lambda 함수를 사용하여 승인 결정과 함께 SendTaskSuccess API 를 호출합니다. 모든 검토 결정을 Amazon DynamoDB 에 저장합니다.",
-        "content_en": "Create an AWS Step Functions workflow that has a human approval step that uses the waitForTaskToken API to pause execution. After a human technician completes a review, use an AWS Lambda function to call the SendTaskSuccess API with the approval decision. Store all review decisions in Amazon DynamoDB",
-        "is_correct": true,
-        "order_num": 1
-      },
-      {
-        "id": 9802,
-        "problem_id": 98,
-        "content": "사용자 지정 이벤트 패턴이 있는 Amazon EventBridge 규칙을 구성하여 AI 권장 사항을 인간 기술자에게 검토하도록 라우팅합니다. AWS Glue 작업을 생성하여 인간 기술자 승인 큐를 처리합니다. Amazon ElastiCache 를 사용하여 모든 인간 기술자 검토 결정을 캐싱합니다.",
-        "content_en": "Configure Amazon EventBridge rules with custom event patterns to route AI recommendations to human technicians for review. Create AWS Glue jobs to process human technician approval queues. Use Amazon ElastiCache to cache all human technician review decisions.",
-        "is_correct": false,
-        "order_num": 2
-      },
-      {
-        "id": 9803,
-        "problem_id": 98,
-        "content": "AWS Lambda 함수와 Amazon SQS 큐를 사용하여 AI 권장 사항에 대한 인간 검토를 위한 사용자 지정 승인 워크플로를 생성합니다. 감사 목적으로 모든 검토 결정을 Amazon DynamoDB 에 저장합니다.",
-        "content_en": "Create a custom approval workflow by using AWS Lambda functions and Amazon SQS queues for human review of AI recommendations. Store all review decisions in Amazon DynamoDB for audit purposes.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
-    "id": 99,
-    "title": "Q99. 한 금융 서비스 회사가 생성형 AI(GenAI) 애플리케이션을 위해 ...",
-    "title_en": "Q99. A financial services company uses mult...",
-    "content": "한 금융 서비스 회사가 생성형 AI(GenAI) 애플리케이션을 위해 Amazon Bedrock 을 통해 여러 파운데이션 모델(FM)을 사용합니다. 민감한 금융 데이터에 대한 GenAI 사용을 규제하는 새로운 규정을 준수하기 위해, 회사는 토큰 관리 솔루션이 필요합니다.\n토큰 관리 솔루션은 애플리케이션이 모델별 토큰 한도에 근접할 때 선제적으로 알림을 보내야 합니다. 또한 이 솔루션은 분당 5,000건 이상의 요청을 처리하고, 비즈니스 부서별 비용 배분을 위해 토큰 사용량 지표를 유지해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "A financial services company uses multiple foundation models (FMs) through Amazon Bedrock for its generative AI (GenAI) applications. To comply with a new regulation for GenAI use with sensitive financial data, the company needs a token management solution. The token management solution must proactively alert when applications approach model-specific token limits. The solution must also process more than 5,000 requests each minute and maintain token usage metrics to allocate costs across business units. Which solution will meet these requirements?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 9900,
-        "problem_id": 99,
-        "content": "실패한 요청을 위한 Amazon SQS 데드 레터 큐를 배포합니다. 토큰 관련 실패를 분석하도록 AWS Lambda 함수를 구성합니다. Amazon CloudWatch Logs Insights 를 사용하여 Amazon Bedrock API 응답의 오류 로그를 기반으로 토큰 사용 패턴 보고서를 생성합니다.",
-        "content_en": "Deploy an Amazon SQS dead-letter queue for failed requests. Configure an AWS Lambda function to analyze token-related failures. Use Amazon CloudWatch Logs Insights to generate reports on token usage patterns based on error logs from Amazon Bedrock API responses.",
-        "is_correct": false,
-        "order_num": 0
-      },
-      {
-        "id": 9901,
-        "problem_id": 99,
-        "content": "AWS Lambda 함수에서 모델별 토크나이저를 개발합니다. 요청을 Amazon Bedrock 에 보내기 전에 토큰 사용량을 추정하도록 Lambda 함수를 구성합니다. 지표를 Amazon CloudWatch 에 게시하고 요청이 임계값에 근접할 때 알람을 트리거하도록 Lambda 함수를 구성합니다. 비용 보고를 위해 상세한 토큰 사용량을 Amazon DynamoDB 에 저장합니다.",
-        "content_en": "Develop model-specific tokenizers in an AWS Lambda function. Configure the Lambda function to estimate token usage before sending requests to Amazon Bedrock. Configure the Lambda function to publish metrics to Amazon CloudWatch and trigger alarms when requests approach thresholds. Store detailed token usage in Amazon DynamoDB to report costs.",
-        "is_correct": true,
-        "order_num": 1
-      },
-      {
-        "id": 9902,
-        "problem_id": 99,
-        "content": "Amazon API Gateway 를 사용하여 모든 Amazon Bedrock API 호출에 대한 프록시를 생성합니다. 사전 정의된 토큰 할당량이 있는 사용자 지정 사용 계획을 기반으로 요청 스로틀링을 구성합니다. 토큰 한도를 초과할 요청을 거부하도록 API Gateway 를 구성합니다.",
-        "content_en": "Use Amazon API Gateway to create a proxy for all Amazon Bedrock API calls. Configure request throttling based on custom usage plans with predefined token quotas. Configure API Gateway to reject requests that will exceed token limits.",
-        "is_correct": false,
-        "order_num": 2
-      },
-      {
-        "id": 9903,
-        "problem_id": 99,
-        "content": "토큰 할당량 정책이 있는 Amazon Bedrock Guardrails 를 구현합니다. 거부된 요청에 대한 지표를 수집합니다. Amazon Bedrock Guardrails 지표를 기반으로 알림을 트리거하도록 Amazon EventBridge 규칙을 구성합니다. Amazon CloudWatch 대시보드를 사용하여 모델 전반의 토큰 사용 추세를 시각화합니다.",
-        "content_en": "Implement Amazon Bedrock Guardrails with token quota policies. Capture metrics on rejected requests. Configure Amazon EventBridge rules to trigger notifications based on Amazon Bedrock Guardrails metrics. Use Amazon CloudWatch dashboards to visualize token usage trends across models.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
     "id": 100,
     "title": "Q100. 한 대형 전자상거래 회사가 제품 설명을 생성하기 위해 파운데이션 모델...",
     "title_en": "Q100. A large ecommerce company has deployed...",
@@ -4353,49 +4267,6 @@
     ]
   },
   {
-    "id": 101,
-    "title": "Q101. 한 회사가 리전 간 추론(cross-Region inference)과...",
-    "title_en": "Q101. A company is using Amazon Bedrock to d...",
-    "content": "한 회사가 리전 간 추론(cross-Region inference)과 프로비저닝된 처리량(provisioned throughput)을 지원하는 파운데이션 모델을 사용하는 AI 기반 애플리케이션을 Amazon Bedrock 으로 개발하고 있습니다. 애플리케이션은 유럽과 북미의 사용자에게 일관되게 낮은 지연 시간으로 서비스를 제공해야 합니다. 애플리케이션은 유럽 사용자 데이터가 유럽 기반 AWS 리전 내에 머물러야 한다는 데이터 레지던시(data residency) 규정을 준수해야 합니다.\n테스트 중, 리전별 트래픽 급증이 서비스 할당량에 도달할 때 애플리케이션에 서비스 저하가 발생합니다. 회사는 애플리케이션 복원력을 유지하고 운영 복잡성을 최소화하는 솔루션이 필요합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "A company is using Amazon Bedrock to develop an AI-powered application that uses a foundation model that supports cross-Region inference and provisioned throughput. The application must serve users in Europe and North America with consistently low latency. The application must comply with data residency regulations that require European user data to remain within Europe- based AWS Regions. During testing, the application experiences service degradation when Regional traffic spikes reach service quotas. The company needs a solution that maintains application resilience and minimizes operational complexity. Which solution will meet these requirements?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 10100,
-        "problem_id": 101,
-        "content": "북미 및 유럽 리전에 별도의 Amazon Bedrock 인스턴스를 배포합니다. 사용자 위치에 따라 트래픽을 라우팅하는 사용자 지정 라우팅 계층을 사용합니다. 리전별 서비스 사용량을 모니터링하도록 Amazon CloudWatch 알람을 구성합니다. 사용량이 지정된 임계값에 근접할 때 회사에 이메일 알림을 보내도록 Amazon SNS 를 사용합니다.",
-        "content_en": "Deploy separate Amazon Bedrock instances in North American and European Regions. Use a custom routing layer that directs traffic based on user location. Configure Amazon CloudWatch alarms to monitor Regional service usage. Use Amazon SNS to send email alerts to the company when usage approaches specified thresholds.",
-        "is_correct": false,
-        "order_num": 0
-      },
-      {
-        "id": 10101,
-        "problem_id": 101,
-        "content": "애플리케이션이 InvokeModel API 를 호출할 때 프로파일 ID 에 지리적 코드를 지정하여 Amazon Bedrock 리전 간 추론 프로파일을 사용합니다. 유럽 및 북미 사용자를 적절한 리전별 엔드포인트로 안내하도록 별도의 Amazon API Gateway HTTP API 를 구성합니다.",
-        "content_en": "Use Amazon Bedrock cross-Region inference profiles by specifying geographical codes in profile IDs when the application calls the InvokeModel API. Configure separate Amazon API Gateway HTTP APIs to direct European and North American users to the appropriate Regional endpoints.",
-        "is_correct": true,
-        "order_num": 1
-      },
-      {
-        "id": 10102,
-        "problem_id": 101,
-        "content": "스로틀링을 처리하기 위한 재시도 로직을 구현하는 다중 리전 Amazon API Gateway HTTP API 와 AWS Lambda 함수를 배포합니다. 기본 리전에서 서비스 할당량에 도달하면 가장 가까운 보조 리전에서 파운데이션 모델을 호출하도록 Lambda 함수를 구성합니다. 데이터 레지던시 요구 사항 준수를 보장하기 위해 지능형 라우팅을 사용합니다.",
-        "content_en": "Deploy a multi-Region Amazon API Gateway HTTP API and AWS Lambda functions that implement retry logic to handle throttling. Configure the Lambda functions to call the foundation model in the nearest secondary Region when the application reaches service quotas in the primary Region. Use intelligent routing to ensure compliance with data residency requirements.",
-        "is_correct": false,
-        "order_num": 2
-      },
-      {
-        "id": 10103,
-        "problem_id": 101,
-        "content": "여러 리전에서 Amazon Bedrock 에 대한 프로비저닝된 처리량을 구성합니다. 스로틀링이 발생할 때 리전 간 전환하도록 애플리케이션 코드에 장애 조치(failover) 로직을 구현합니다. 사용자 위치에 따라 적절한 엔드포인트로 트래픽을 라우팅하도록 AWS Global Accelerator 를 사용합니다.",
-        "content_en": "Configure provisioned throughput for Amazon Bedrock in multiple Regions. Implement failover logic in the application code to switch between Regions when throttling occurs. Use AWS Global Accelerator to route traffic to the appropriate endpoints based on user location.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
     "id": 102,
     "title": "Q102. 한 연구 회사가 기술 문서의 요약을 생성하는 GenAI 시스템을 개발...",
     "title_en": "Q102. A research company is developing a Gen...",
@@ -4433,49 +4304,6 @@
         "problem_id": 102,
         "content": "AWS AppConfig 기능 플래그를 사용하여 데이터 버전 관리를 구현합니다. IAM 조건 키를 사용하여 모델에 대한 액세스를 제한합니다. Amazon S3 에 소스-출력 관계의 버전 관리된 매핑 파일을 유지합니다.",
         "content_en": "Use AWS AppConfig feature flags to implement data versioning. Restrict access to the model by using IAM condition keys. Maintain a versioned mapping file of source-to-output relationships in Amazon S3.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
-    "id": 103,
-    "title": "Q103. 한 금융 서비스 회사가 Amazon Bedrock 을 사용하여 금융 ...",
-    "title_en": "Q103. A financial services company uses an A...",
-    "content": "한 금융 서비스 회사가 Amazon Bedrock 을 사용하여 금융 문서를 처리하는 AI 애플리케이션을 사용합니다. 업무 시간 동안 애플리케이션은 시간당 약 10,000건의 요청을 처리하며, 이는 일관된 처리량을 필요로 합니다.\n회사는 CreateProvisionedModelThroughput API 를 사용하여 프로비저닝된 처리량을 구매합니다. Amazon CloudWatch 지표는 온디맨드 요청이 스로틀링되는 동안 프로비저닝된 용량이 사용되지 않음을 보여줍니다. 회사는 애플리케이션에서 다음 코드를 발견합니다:\nresponse = bedrock_runtime.invoke_model(\nmodelId=\"anthropic.claude-v2\",\nbody=json.dumps(payload)\n)\n회사는 애플리케이션이 프로비저닝된 처리량을 사용하고 스로틀링 문제를 해결하도록 해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "A financial services company uses an AI application to process financial documents by using Amazon Bedrock. During business hours, the application handles approximately 10,000 requests each hour, which requires consistent throughput. The company uses the CreateProvisionedModelThroughput API to purchase provisioned throughput. Amazon CloudWatch metrics show that the provisioned capacity is unused while on-demand requests are being throttled. The company finds the following code in the application: response = bedrock_runtime.invoke_model( modelId= \" anthropic.claude-v2 \" , body=json.dumps(payload) ) The company needs the application to use the provisioned throughput and to resolve the throttling issues. Which solution will meet these requirements?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 10300,
-        "problem_id": 103,
-        "content": "프로비저닝된 처리량 구성에서 모델 단위(MU) 수를 늘립니다.",
-        "content_en": "Increase the number of model units (MUs) in the provisioned throughput configuration.",
-        "is_correct": false,
-        "order_num": 0
-      },
-      {
-        "id": 10301,
-        "problem_id": 103,
-        "content": "모델 ID 매개변수를 CreateProvisionedModelThroughput API 가 반환하는 프로비저닝된 모델의 ARN 으로 교체합니다.",
-        "content_en": "Replace the model ID parameter with the ARN of the provisioned model that the CreateProvisionedModelThroughput API returns.",
-        "is_correct": true,
-        "order_num": 1
-      },
-      {
-        "id": 10302,
-        "problem_id": 103,
-        "content": "피크 시간 동안 스로틀링 예외를 처리하기 위해 지수 백오프 재시도 로직을 추가합니다.",
-        "content_en": "Add exponential backoff retry logic to handle throttling exceptions during peak hours.",
-        "is_correct": false,
-        "order_num": 2
-      },
-      {
-        "id": 10303,
-        "problem_id": 103,
-        "content": "invokeModel API 대신 invokeModelWithResponseStream API 를 사용하도록 애플리케이션을 수정합니다.",
-        "content_en": "Modify the application to use the invokeModelWithResponseStream API instead of the invokeModel API.",
         "is_correct": false,
         "order_num": 3
       }
@@ -4826,49 +4654,6 @@
     ]
   },
   {
-    "id": 112,
-    "title": "Q112. 한 스페셜티 커피 회사가 3단계 프롬프트 체인과 함께 Amazon B...",
-    "title_en": "Q112. A specialty coffee company has a mobil...",
-    "content": "한 스페셜티 커피 회사가 3단계 프롬프트 체인과 함께 Amazon Bedrock 을 사용하여 개인화된 커피 로스트 프로파일을 생성하는 모바일 앱을 보유하고 있습니다. 프롬프트 체인은 사용자 입력을 구조화된 메타데이터로 변환하고, 커피 로스트에 대한 관련 로그를 검색하며, 각 고객을 위한 개인화된 로스트 추천을 생성합니다.\n여러 AWS 리전의 사용자들은 동일한 입력에 대해 일관되지 않은 로스트 추천, 검색 단계 동안의 느린 추론, 지나치게 높은 온도에서의 추출과 같은 안전하지 않은 추천을 보고합니다. 회사는 반복되는 입력에 대한 출력의 안정성을 개선해야 합니다. 회사는 또한 앱 성능과 앱 출력의 안전성을 개선해야 합니다. 업데이트된 솔루션은 동일한 입력에 대해 99.5% 의 출력 일관성을 보장하고 1초 미만의 추론 지연 시간을 달성해야 합니다. 솔루션은 또한 검증된 안전 제어를 사용하여 안전하지 않거나 환각된 추천을 차단해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "A specialty coffee company has a mobile app that generates personalized coffee roast profiles by using Amazon Bedrock with a three-stage prompt chain. The prompt chain converts user inputs into structured metadata, retrieves relevant logs for coffee roasts, and generates a personalized roast recommendation for each customer. Users in multiple AWS Regions report inconsistent roast recommendations for identical inputs, slow inference during the retrieval step, and unsafe recommendations such as brewing at excessively high temperatures. The company must improve the stability of outputs for repeated inputs. The company must also improve app performance and the safety of the app's outputs. The updated solution must ensure 99.5% output consistency for identical inputs and achieve inference la tency of less than 1 second. The solution must also block unsafe or hallucinated recommendations by using validated safety controls. Which solution will meet these requirements?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 11200,
-        "problem_id": 112,
-        "content": "추론 지연 시간을 안정화하기 위해 프로비저닝된 처리량과 함께 Amazon Bedrock 을 배포합니다. 안전하지 않은 출력을 차단하기 위해 의미적 거부 규칙(semantic denial rules)이 있는 Amazon Bedrock 가드레일을 적용합니다. 승인 워크플로를 사용하여 프롬프트를 관리하기 위해 Amazon Bedrock Prompt Management 를 사용합니다.",
-        "content_en": "Deploy Amazon Bedrock with provisioned throughput to stabilize inference latency. Apply Amazon Bedrock guardrails that have semantic denial rules to block unsafe outputs. Use Amazon Bedrock Prompt Management to manage prompts by using approval workflows.",
-        "is_correct": true,
-        "order_num": 0
-      },
-      {
-        "id": 11201,
-        "problem_id": 112,
-        "content": "Amazon Bedrock Agents 를 사용하여 체이닝을 관리합니다. 모델 입력과 출력을 Amazon CloudWatch Logs 에 로깅합니다. CloudWatch 의 로그를 사용하여 프롬프트 버전에 대한 A/B 테스트를 수행합니다.",
-        "content_en": "Use Amazon Bedrock Agents to manage chaining. Log model inputs and outputs to Amazon CloudWatch Logs. Use logs from Amazon CloudWatch to perform A/B testing for prompt versions.",
-        "is_correct": false,
-        "order_num": 1
-      },
-      {
-        "id": 11202,
-        "problem_id": 112,
-        "content": "Amazon ElastiCache 에 프롬프트 결과를 캐싱합니다. AWS Lambda 함수를 사용하여 메타데이터를 사전 처리하고 종단 간 지연 시간을 추적합니다. AWS X-Ray 를 사용하여 성능 병목을 식별하고 해결합니다.",
-        "content_en": "Cache prompt results in Amazon ElastiCache. Use AWS Lambda functions to pre-process metadata and to trace end-to-end latency. Use AWS X-Ray to identify and remediate performance bottlenecks.",
-        "is_correct": false,
-        "order_num": 2
-      },
-      {
-        "id": 11203,
-        "problem_id": 112,
-        "content": "Amazon Kendra 를 사용하여 로스트 로그 검색 정확도를 개선합니다. 정규화된 프롬프트 메타데이터를 Amazon DynamoDB 에 저장합니다. AWS Step Functions 를 사용하여 다단계 프롬프트를 오케스트레이션합니다.",
-        "content_en": "Use Amazon Kendra to improve roast log retrieval accuracy. Store normalized prompt metadata within Amazon DynamoDB. Use AWS Step Functions to orchestrate multi-step prompts.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
     "id": 114,
     "title": "Q114. 한 소매 회사가 회사 웹사이트에서 고객에게 제품 추천을 하는 애플리케...",
     "title_en": "Q114. A retail company runs an application t...",
@@ -4963,49 +4748,6 @@
     ]
   },
   {
-    "id": 116,
-    "title": "Q116. 한 전자상거래 회사가 규정, 비용 최적화, 성능 요구 사항에 따라 A...",
-    "title_en": "Q116. An ecommerce company operates a global...",
-    "content": "한 전자상거래 회사가 규정, 비용 최적화, 성능 요구 사항에 따라 Amazon Bedrock 의 여러 파운데이션 모델(FM) 간에 전환해야 하는 글로벌 제품 추천 시스템을 운영합니다. 회사는 동적 비용 임계값, AWS 리전별 규정 준수 규칙, 여러 FM 에 걸친 실시간 A/B 테스트를 포함한 독점 비즈니스 로직을 기반으로 사용자 지정 제어를 적용해야 합니다. 시스템은 새 코드를 배포하지 않고도 FM 간에 전환할 수 있어야 합니다. 시스템은 사용자 등급, 거래 금액, 규제 구역, 그리고 매시간 변경되어 수천 개의 동시 요청에 즉시 전파되어야 하는 실시간 비용 지표를 포함한 복잡한 규칙을 기반으로 사용자 요청을 라우팅해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "An ecommerce company operates a global product recommendation system that needs to switch between multiple foundation models (FMs) in Amazon Bedrock based on regulations, cost optimization, and performance requirements. The company must apply custom controls based on proprietary business logic, including dynamic cost thresholds, AWS Region-specific compliance rules, and real-time A/B testing across multiple FMs. The system must be able to switch between FMs without deploying new code. The system must route user requests based on complex rules including user tier, transaction value, regulatory zone, and real-time cost metrics that change hourly and require immediate propagation across thousands of concurrent requests. Which solution will meet these requirements?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 11600,
-        "problem_id": 116,
-        "content": "환경 변수를 사용하여 라우팅 규칙과 Amazon Bedrock FM ID 를 저장하는 AWS Lambda 함수를 배포합니다. 비즈니스 요구 사항이 변경될 때 Lambda 콘솔을 사용하여 환경 변수를 업데이트합니다. 요청 매개변수를 읽어 라우팅 결정을 내리도록 Amazon API Gateway REST API 를 구성합니다.",
-        "content_en": "Deploy an AWS Lambda function that uses environment variables to store routing rules and Amazon Bedrock FM IDs. Use the Lambda console to update the environment variables when business requirements change. Configure an Amazon API Gateway REST API to read request parameters to make routing decisions.",
-        "is_correct": false,
-        "order_num": 0
-      },
-      {
-        "id": 11601,
-        "problem_id": 116,
-        "content": "요청 속성에 따라 라우팅 로직을 구현하도록 Amazon API Gateway REST API 요청 변환 템플릿을 배포합니다. Amazon Bedrock FM 엔드포인트를 REST API 스테이지 변수로 저장합니다. 시스템이 모델 간에 전환할 때 변수를 업데이트합니다.",
-        "content_en": "Deploy Amazon API Gateway REST API request transformation templates to implement routing logic based on request attributes. Store Amazon Bedrock FM endpoints as REST API stage variables. Update the variables when the system switches between models.",
-        "is_correct": false,
-        "order_num": 1
-      },
-      {
-        "id": 11602,
-        "problem_id": 116,
-        "content": "각 사용자 요청에 대해 AWS AppConfig 에이전트에서 라우팅 구성을 가져오도록 AWS Lambda 함수를 구성합니다. Lambda 함수에서 비즈니스 로직을 실행하여 각 요청에 대한 적절한 FM 을 선택합니다. 단일 Amazon API Gateway REST API 엔드포인트를 통해 FM 을 노출합니다.",
-        "content_en": "Configure an AWS Lambda function to fetch routing configuration from the AWS AppConfig Agent for each user request. Run business logic in the Lambda function to select the appropriate FM for each request. Expose the FM through a single Amazon API Gateway REST API endpoint.",
-        "is_correct": true,
-        "order_num": 2
-      },
-      {
-        "id": 11603,
-        "problem_id": 116,
-        "content": "Amazon API Gateway REST API 에 대해 AWS Lambda authorizer 를 사용하여 AWS AppConfig 에 저장된 라우팅 규칙을 평가합니다. 비즈니스 로직을 기반으로 권한 부여 컨텍스트를 반환합니다. 각 Amazon Bedrock FM 에 대해 모델별 Lambda 함수로 요청을 라우팅합니다.",
-        "content_en": "Use AWS Lambda authorizers for an Amazon API Gateway REST API to evaluate routing rules that are stored in AWS AppConfig. Return authorization contexts based on business logic. Route requests to model-specific Lambda functions for each Amazon Bedrock FM.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
     "id": 117,
     "title": "Q117. 한 의료 회사가 Amazon Bedrock 을 사용하여 생성형 AI(...",
     "title_en": "Q117. A medical company is creating a genera...",
@@ -5092,49 +4834,6 @@
     ]
   },
   {
-    "id": 119,
-    "title": "Q119. 한 전자상거래 회사가 고객에게 제품을 추천하기 위해 Anthropic...",
-    "title_en": "Q119. An ecommerce company is developing a g...",
-    "content": "한 전자상거래 회사가 고객에게 제품을 추천하기 위해 Anthropic Claude 와 함께 Amazon Bedrock 을 사용하는 생성형 AI 애플리케이션을 개발하고 있습니다. 고객들은 일부 추천 제품이 웹사이트에서 판매되지 않거나 고객과 관련이 없다고 보고합니다. 고객들은 또한 솔루션이 일부 추천을 생성하는 데 오랜 시간이 걸린다고 보고합니다.\n회사는 문제를 조사하여 고객과 제품 추천 솔루션 간의 상호 작용 대부분이 고유하다는 것을 발견합니다. 회사는 솔루션이 회사의 제품 카탈로그에 없는 제품을 추천한다는 것을 확인합니다. 회사는 이러한 문제를 해결해야 합니다.\n이 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "An ecommerce company is developing a generative AI application that uses Amazon Bedrock with Anthropic Claude to recommend products to customers. Customers report that some recommended products are not available for sale on the website or are not relevant to the customer. Customers also report that the solution takes a long time to generate some recommendations. The company investigates the issues and finds that most interactions between customers and the product recommendation solution are unique. The company confirms that the solution recommends products that are not in the company's product catalog. The company must resolve these issues. Which solution will meet this requirement?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 11900,
-        "problem_id": 119,
-        "content": "Amazon Bedrock Guardrails 내에서 근거(grounding)를 강화합니다. 자동 추론(Automated Reasoning) 검사를 활성화합니다. 프로비저닝된 처리량을 설정합니다.",
-        "content_en": "Increase grounding within Amazon Bedrock Guardrails. Enable Automated Reasoning checks. Set up provisioned throughput.",
-        "is_correct": false,
-        "order_num": 0
-      },
-      {
-        "id": 11901,
-        "problem_id": 119,
-        "content": "프롬프트 엔지니어링을 사용하여 모델 응답을 관련 제품으로 제한합니다. InvokeModelWithResponseStream 작업과 같은 스트리밍 기법을 사용하여 고객의 체감 지연 시간을 줄입니다.",
-        "content_en": "Use prompt engineering to restrict the model responses to relevant products. Use streaming techniques such as the InvokeModelWithResponseStream action to reduce perceived latency for the customers.",
-        "is_correct": false,
-        "order_num": 1
-      },
-      {
-        "id": 11902,
-        "problem_id": 119,
-        "content": "Amazon Bedrock 지식 기반을 생성합니다. 검색 증강 생성(RAG)을 구현합니다. PerformanceConfigLatency 매개변수를 optimized 로 설정합니다.",
-        "content_en": "Create an Amazon Bedrock knowledge base. Implement Retrieval Augmented Generation RAG. Set the PerformanceConfigLatency parameter to optimized.",
-        "is_correct": true,
-        "order_num": 2
-      },
-      {
-        "id": 11903,
-        "problem_id": 119,
-        "content": "Amazon OpenSearch Service 에 제품 카탈로그 데이터를 저장합니다. 모델의 제품 추천을 제품 카탈로그와 대조하여 검증합니다. Amazon DynamoDB 를 사용하여 응답 캐싱을 구현합니다.",
-        "content_en": "Store product catalog data in Amazon OpenSearch Service. Validate the model's product recommendations against the product catalog. Use Amazon DynamoDB to implement response caching.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
     "id": 120,
     "title": "Q120. 한 회사가 고객 서비스 애플리케이션을 지원하는 3개의 전문화된 NLP...",
     "title_en": "Q120. A company is developing three speciali...",
@@ -5215,49 +4914,6 @@
         "problem_id": 121,
         "content": "AWS CloudTrail 을 구성하여 AWS Organizations 의 회사 조직에서 모든 Amazon Q Developer API 호출을 추적합니다. AWS Lambda 함수를 사용하여 로그를 처리합니다. 처리된 로그를 Amazon DynamoDB 에 저장합니다. Amazon Managed Grafana 에서 사용자 지정 대시보드를 생성하여 데이터를 시각화합니다.",
         "content_en": "Configure AWS CloudTrail to track all Amazon Q Developer API calls in the company's organization in AWS Organizations. Use an AWS Lambda function to process the logs. Store the processed logs in Amazon DynamoDB. Create custom dashboards in Amazon Managed Grafana to visualize the data.",
-        "is_correct": false,
-        "order_num": 3
-      }
-    ]
-  },
-  {
-    "id": 122,
-    "title": "Q122. 한 회사가 전 세계 사용자가 새로운 레스토랑을 발견하는 것을 돕는 서...",
-    "title_en": "Q122. A company provides a service that help...",
-    "content": "한 회사가 전 세계 사용자가 새로운 레스토랑을 발견하는 것을 돕는 서비스를 제공합니다. 서비스는 월간 활성 사용자 5천만 명을 보유하고 있습니다. 회사는 2천만 개의 레스토랑과 2억 개의 리뷰를 포함하는 데이터베이스 전반에 걸쳐 의미적 검색 솔루션을 구현하고자 합니다. 회사는 현재 데이터를 PostgreSQL 에 저장합니다.\n솔루션은 복잡한 자연어 쿼리를 지원하고 쿼리의 최소 95% 에 대해 500ms 이내에 결과를 반환해야 합니다. 솔루션은 매시간 업데이트되는 레스토랑 세부 정보에 대한 데이터 최신성을 유지해야 합니다. 솔루션은 또한 피크 사용 기간 동안 비용 효율적으로 확장되어야 합니다.\n가장 적은 개발 노력으로 이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
-    "content_en": "A company provides a service that helps users from around the world discover new restaurants. The service has 50 million monthly active users. The company wants to implement a semantic search solution across a database that contains 20 million restaurants and 200 million reviews. The company currently stores the data in PostgreSQL. The solution must support complex natural language queries and return results for at least 95% of queries within 500 ms. The solution must maintain data freshness for restaurant details that update hourly. The solution must also scale cost-effectively during peak usage periods. Which solution will meet these requirements with the LEAST development effort?",
-    "category": "AWS AIP-C01",
-    "select": 1,
-    "choices": [
-      {
-        "id": 12200,
-        "problem_id": 122,
-        "content": "레스토랑 데이터를 Amazon OpenSearch Service 로 마이그레이션합니다. 요리 유형, 특징, 위치와 같은 속성을 기반으로 레스토랑을 찾기 위해 사용자 지정 분석기와 관련성 튜닝을 사용하는 키워드 기반 검색 규칙을 구현합니다. 사용자 쿼리를 구조화된 검색 매개변수로 변환하는 Amazon API Gateway HTTP API 엔드포인트를 생성합니다.",
-        "content_en": "Migrate the restaurant data to Amazon OpenSearch Service. Implement keyword-based search rules that use custom analyzers and relevance tuning to find restaurants based on attributes such as cuisine type, features, and location. Create Amazon API Gateway HTTP API endpoints to transform user queries into structured search parameters.",
-        "is_correct": false,
-        "order_num": 0
-      },
-      {
-        "id": 12201,
-        "problem_id": 122,
-        "content": "레스토랑 데이터를 Amazon OpenSearch Service 로 마이그레이션합니다. Amazon Bedrock 의 파운데이션 모델(FM)을 사용하여 레스토랑 설명, 리뷰, 메뉴 항목에서 벡터 임베딩을 생성합니다. 사용자가 자연어 쿼리를 제출하면 동일한 FM 을 사용하여 쿼리를 임베딩으로 변환합니다. k-최근접 이웃(k-NN) 검색을 수행하여 의미적으로 유사한 결과를 찾습니다.",
-        "content_en": "Migrate the restaurant data to Amazon OpenSearch Service. Use a foundation model (FM) in Amazon Bedrock to generate vector embeddings from restaurant descriptions, reviews, and menu items. When users submit natural language queries, convert the queries to embeddings by using the same FM. Perform k-nearest neighbors (k-NN) searches to find semantically similar results.",
-        "is_correct": true,
-        "order_num": 1
-      },
-      {
-        "id": 12202,
-        "problem_id": 122,
-        "content": "레스토랑 데이터를 PostgreSQL 에 유지하고 pgvector 확장을 구현합니다. Amazon Bedrock 의 파운데이션 모델(FM)을 사용하여 레스토랑 데이터에서 벡터 임베딩을 생성합니다. 벡터 임베딩을 PostgreSQL 에 직접 저장합니다. 동일한 FM 을 사용하여 자연어 쿼리를 벡터 표현으로 변환하는 AWS Lambda 함수를 생성합니다. 데이터베이스 내에서 유사성 검색을 수행하도록 Lambda 함수를 구성합니다.",
-        "content_en": "Keep the restaurant data in PostgreSQL and implement a pgvector extension. Use a foundation model (FM) in Amazon Bedrock to generate vector embeddings from restaurant data. Store the vector embeddings directly in PostgreSQL. Create an AWS Lambda function to convert natural language queries to vector representations by using the same FM. Configure the Lambda function to perform similarity searches within the database.",
-        "is_correct": false,
-        "order_num": 2
-      },
-      {
-        "id": 12203,
-        "problem_id": 122,
-        "content": "사용자 지정 수집 파이프라인을 사용하여 레스토랑 데이터를 Amazon Bedrock 지식 기반으로 마이그레이션합니다. 레스토랑 정보에서 임베딩을 자동으로 생성하도록 지식 기반을 구성합니다. 내장된 벡터 검색 기능이 있는 Amazon Bedrock Retrieve API 를 사용하여 자연어 입력으로 지식 기반을 직접 쿼리합니다.",
-        "content_en": "Migrate restaurant data to an Amazon Bedrock knowledge base by using a custom ingestion pipeline. Configure the knowledge base to automatically generate embeddings from restaurant information. Use the Amazon Bedrock Retrieve API with built-in vector search capabilities to query the knowledge base directly by using natural language input.",
         "is_correct": false,
         "order_num": 3
       }

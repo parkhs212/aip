@@ -47,6 +47,7 @@ function QuizContent() {
   const reset = () => { setSelectedSet(new Set()); setSubmitted(false); setShowAnswer(false) }
   const goNext = () => { if (cursor < problems.length - 1) { setCursor(c => c + 1); reset() } }
   const goPrev = () => { if (cursor > 0) { setCursor(c => c - 1); reset() } }
+  const goTo = (idx: number) => { if (idx >= 0 && idx < problems.length) { setCursor(idx); reset() } }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -94,7 +95,6 @@ function QuizContent() {
     return true
   })()
 
-  const qNum = order[cursor] + 1
   const progress = ((cursor + 1) / problems.length) * 100
   const modeColor = mode === 'random' ? 'text-indigo-500' : 'text-blue-500'
   const barColor = mode === 'random' ? 'bg-indigo-500' : 'bg-blue-500'
@@ -111,7 +111,17 @@ function QuizContent() {
         </span>
         <div className="flex items-center gap-2">
           <LangToggle lang={lang} setLang={setLang} />
-          <span className="text-gray-400">{cursor + 1} / {problems.length} · Q{qNum}</span>
+          <select
+            value={cursor}
+            onChange={e => goTo(Number(e.target.value))}
+            className="border border-gray-200 rounded-lg px-2 py-1 text-xs text-gray-600 bg-white"
+            title="문제 바로 이동"
+          >
+            {order.map((qi, i) => (
+              <option key={i} value={i}>Q{qi + 1}</option>
+            ))}
+          </select>
+          <span className="text-gray-400">{cursor + 1} / {problems.length}</span>
         </div>
       </div>
       <div className="w-full bg-gray-200 rounded-full h-1 mb-6">

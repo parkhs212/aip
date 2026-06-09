@@ -36,7 +36,7 @@ function QuizContent() {
   const [wordFreqByLang, setWordFreqByLang] = useState<Record<Lang, Map<string, number>>>({ ko: new Map(), en: new Map() })
   const [customGreen, setCustomGreen] = useState<string[]>([])
   const [excluded, setExcluded] = useState<Set<string>>(new Set())
-  const [highlightOn, setHighlightOn] = useState(true)
+  const [highlightOn, setHighlightOn] = useState(false)
 
   useEffect(() => {
     api.getAllProblems()
@@ -50,7 +50,7 @@ function QuizContent() {
       .catch(e => { setError(e.message); setLoading(false) })
     setCustomGreen(loadLS(LS_CUSTOM))
     setExcluded(new Set(loadLS(LS_EXCLUDED)))
-    setHighlightOn(localStorage.getItem(LS_HIGHLIGHT) !== '0')
+    setHighlightOn(localStorage.getItem(LS_HIGHLIGHT) === '1')
   }, [mode])
 
   const toggleHighlight = () => {

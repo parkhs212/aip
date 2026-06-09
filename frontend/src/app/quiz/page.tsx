@@ -1,14 +1,15 @@
 'use client'
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { api, Problem, problemText, choiceText } from '@/lib/api'
+import { api, Problem, Lang, problemText, choiceText } from '@/lib/api'
 import { useLang, LangToggle } from '@/lib/lang'
+import {
+  fmt, buildWordFreq, loadLS, mergeGreenPhrases,
+  HighlightedText, LS_CUSTOM, LS_EXCLUDED,
+} from '@/lib/highlight'
 
 const LETTERS = 'ABCDEF'
-
-function fmt(text: string) {
-  return text.replace(/\n/g, ' ').replace(/ {2,}/g, ' ').trim()
-}
+const LS_HIGHLIGHT = 'aip-quiz-highlight'
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
@@ -32,6 +33,10 @@ function QuizContent() {
   const [showAnswer, setShowAnswer] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [wordFreqByLang, setWordFreqByLang] = useState<Record<Lang, Map<string, number>>>({ ko: new Map(), en: new Map() })
+  const [customGreen, setCustomGreen] = useState<string[]>([])
+  const [excluded, setExcluded] = useState<Set<string>>(new Set())
+  const [highlightOn, setHighlightOn] = useState(true)
 
   useEffect(() => {
     api.getAllProblems()
@@ -39,10 +44,22 @@ function QuizContent() {
         setProblems(ps)
         const idx = Array.from({ length: ps.length }, (_, i) => i)
         setOrder(mode === 'random' ? shuffle(idx) : idx)
+        setWordFreqByLang({ ko: buildWordFreq(ps, 'ko'), en: buildWordFreq(ps, 'en') })
         setLoading(false)
       })
       .catch(e => { setError(e.message); setLoading(false) })
+    setCustomGreen(loadLS(LS_CUSTOM))
+    setExcluded(new Set(loadLS(LS_EXCLUDED)))
+    setHighlightOn(localStorage.getItem(LS_HIGHLIGHT) !== '0')
   }, [mode])
+
+  const toggleHighlight = () => {
+    setHighlightOn(v => {
+      const next = !v
+      localStorage.setItem(LS_HIGHLIGHT, next ? '1' : '0')
+      return next
+    })
+  }
 
   const reset = () => { setSelectedSet(new Set()); setSubmitted(false); setShowAnswer(false) }
   const goNext = () => { if (cursor < problems.length - 1) { setCursor(c => c + 1); reset() } }
@@ -63,6 +80,9 @@ function QuizContent() {
 
   const problem = problems[order[cursor]]
   if (!problem) return null
+
+  const wordFreq = wordFreqByLang[lang]
+  const greenPhrases = mergeGreenPhrases(lang, customGreen)
 
   const correctCount = problem.choices?.filter(c => c.is_correct).length ?? 0
   const isMulti = correctCount > 1
@@ -110,6 +130,17 @@ function QuizContent() {
           {mode === 'random' ? '랜덤 풀기' : '순서대로 풀기'}
         </span>
         <div className="flex items-center gap-2">
+          <button
+            onClick={toggleHighlight}
+            title="정답 보기 시 핵심 문구 초록 강조"
+            className={`px-2 py-1 rounded-lg text-xs font-medium border transition-colors ${
+              highlightOn
+                ? 'bg-green-50 text-green-700 border-green-300'
+                : 'bg-white text-gray-400 border-gray-200 hover:bg-gray-50'
+            }`}
+          >
+            강조 {highlightOn ? 'ON' : 'OFF'}
+          </button>
           <LangToggle lang={lang} setLang={setLang} />
           <select
             value={cursor}
@@ -170,7 +201,17 @@ function QuizContent() {
               className={`w-full text-left px-4 py-3 rounded-xl transition-colors text-sm sm:text-base ${cls}`}
             >
               <span className="font-bold mr-2">{LETTERS[i]}.</span>
-              {fmt(choiceText(c, lang))}
+              {highlightOn && (answered || showAnswer) && c.is_correct ? (
+                <HighlightedText
+                  text={fmt(choiceText(c, lang))}
+                  wordFreq={wordFreq}
+                  customGreen={greenPhrases}
+                  excluded={excluded}
+                  readOnly
+                />
+              ) : (
+                fmt(choiceText(c, lang))
+              )}
             </button>
           )
         })}

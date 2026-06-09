@@ -201,7 +201,7 @@ function QuizContent() {
               className={`w-full text-left px-4 py-3 rounded-xl transition-colors text-sm sm:text-base ${cls}`}
             >
               <span className="font-bold mr-2">{LETTERS[i]}.</span>
-              {highlightOn && (answered || showAnswer) && c.is_correct ? (
+              {highlightOn && c.is_correct ? (
                 <HighlightedText
                   text={fmt(choiceText(c, lang))}
                   wordFreq={wordFreq}

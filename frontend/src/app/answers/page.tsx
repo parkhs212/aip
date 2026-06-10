@@ -76,7 +76,7 @@ export default function AnswersPage() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="sticky top-[53px] z-10 bg-gray-50 pb-3 pt-1">
+      <div className="sticky top-[53px] z-20 bg-gray-50 pb-3 pt-1 border-b border-gray-100">
         <div className="flex gap-2">
           <input
             type="text"
@@ -96,9 +96,8 @@ export default function AnswersPage() {
         <p className={`text-xs mt-1.5 ${feedback ? (feedback.ok ? 'text-green-600' : 'text-red-500') : 'text-transparent'}`}>
           {feedback?.msg ?? '.'}
         </p>
-      </div>
 
-      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mt-2">
         <div className="flex items-center gap-2">
           <h1 className="text-base font-bold text-gray-700">
             정답 목록 <span className="text-gray-400 font-normal">({problems.length}문제)</span>
@@ -122,9 +121,10 @@ export default function AnswersPage() {
             </button>
           )}
         </div>
+        </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4 mt-4">
         {problems.map((p, qi) => {
           const correct = p.choices?.filter(c => c.is_correct) ?? []
           return (

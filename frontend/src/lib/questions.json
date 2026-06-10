@@ -4227,7 +4227,7 @@
     "id": 100,
     "title": "Q100. 한 대형 전자상거래 회사가 제품 설명을 생성하기 위해 파운데이션 모델...",
     "title_en": "Q100. A large ecommerce company has deployed...",
-    "content": "한 대형 전자상거래 회사가 제품 설명을 생성하기 위해 파운데이션 모델(FM)을 배포했습니다. 회사의 엔지니어링 팀은 Amazon CloudWatch 를 사용하여 토큰 사용량, 지연 시간, 오류율과 같은 기술 지표를 모니터링합니다. 회사의 마케팅 팀은 자체 시스템에서 전환율 및 매출 영향과 같은 비즈니스 지표를 추적합니다. 회사는 기술 성능을 비즈니스 결과와 연관 짓는 통합 관측성(observability) 솔루션이 필요합니다.\n이 솔루션은 운영 지표가 성능 저하를 나타낼 때 이해관계자에게 자동 알림을 제공해야 합니다. 또한 기술 지표와 비즈니스 지표 모두에 대한 포괄적인 가시성을 제공해야 합니다. 이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
+    "content": "한 대형 전자상거래 회사가 제품 설명을 생성하기 위해 파운데이션 모델(FM)을 배포했습니다. 회사의 엔지니어링 팀은 Amazon CloudWatch 를 사용하여 토큰 사용량, 지연 시간, 오류율과 같은 기술 지표를 모니터링합니다. 회사의 마케팅 팀은 자체 시스템에서 전환율 및 매출 영향과 같은 비즈니스 지표를 추적합니다. 회사는 기술 성능을 비즈니스 결과와 연관 짓는 통합 관측성 솔루션이 필요합니다.\n이 솔루션은 운영 지표가 성능 저하를 나타낼 때 이해관계자에게 자동 알림을 제공해야 합니다. 또한 기술 지표와 비즈니스 지표 모두에 대한 포괄적인 가시성을 제공해야 합니다. 이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
     "content_en": "A large ecommerce company has deployed a foundation model (FM) to generate product descriptions. The company's engineering team monitors technical metrics such as token usage, latency, and error rates by using Amazon CloudWatch. The company's marketing team tracks business metrics such as conversion rates and revenue impact in its own systems. The company needs a unified observability solution that correlates technical performance with business outcomes. The solution must provide automatic alerts to stakeholders when operational metrics indicate degradation. The solution must provide comprehensive visibility across both technical and business metrics. Which solution will meet these requirements?",
     "category": "AWS AIP-C01",
     "select": 1,
@@ -4259,7 +4259,7 @@
       {
         "id": 10003,
         "problem_id": 100,
-        "content": "운영 지표를 가져온 비즈니스 지표와 통합하는 CloudWatch 사용자 지정 대시보드를 구성합니다. 이상 탐지(anomaly detection)가 있는 CloudWatch 복합 알람을 설정합니다. 상관 관계가 있는 지표가 성능 문제를 나타낼 때 이해관계자에게 알리는 알람 작업을 생성하도록 Amazon SNS 를 사용합니다.",
+        "content": "운영 지표를 가져온 비즈니스 지표와 통합하는 CloudWatch 사용자 지정 대시보드를 구성합니다. 이상 탐지가 있는 CloudWatch 복합 알람을 설정합니다. 상관 관계가 있는 지표가 성능 문제를 나타낼 때 이해관계자에게 알리는 알람 작업을 생성하도록 Amazon SNS 를 사용합니다.",
         "content_en": "Configure CloudWatch custom dashboards that integrate operational metrics with imported business metrics. Set up CloudWatch composite alarms with anomaly detection. Use Amazon SNS to create alarm actions to notify stakeholders when correlated metrics indicate performance issues.",
         "is_correct": true,
         "order_num": 3
@@ -4270,7 +4270,7 @@
     "id": 102,
     "title": "Q102. 한 연구 회사가 기술 문서의 요약을 생성하는 GenAI 시스템을 개발...",
     "title_en": "Q102. A research company is developing a Gen...",
-    "content": "한 연구 회사가 기술 문서의 요약을 생성하는 GenAI 시스템을 개발하고 있습니다. 회사는 모든 데이터 소스를 중앙 위치에 카탈로그화해야 합니다. 회사는 데이터 소스를 자동으로 검색하고 업데이트할 수 있는 솔루션이 필요합니다. 솔루션은 생성된 각 요약에 사용자가 쿼리할 수 있는 메타데이터로 인용(citations)을 태그해야 합니다. 솔루션은 모든 모델 호출에 대해 변조 방지(tamper-evident) 불변 감사 로그를 유지하고 I/O 레코드를 저장해야 합니다. 이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
+    "content": "한 연구 회사가 기술 문서의 요약을 생성하는 GenAI 시스템을 개발하고 있습니다. 회사는 모든 데이터 소스를 중앙 위치에 카탈로그화해야 합니다. 회사는 데이터 소스를 자동으로 검색하고 업데이트할 수 있는 솔루션이 필요합니다. 솔루션은 생성된 각 요약에 사용자가 쿼리할 수 있는 메타데이터로 인용을 태그해야 합니다. 솔루션은 모든 모델 호출에 대해 변조 방지 불변 감사 로그를 유지하고 I/O 레코드를 저장해야 합니다. 이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
     "content_en": "A research company is developing a GenAI system to produce summaries of technical documents. The company must catalog all data sources in a central location. The company needs a solution that can automatically discover and update data sources. The solution must tag each generated summary with citations as metadata that users can query. The solution must retain tamper-evident, immutable audit logs for every model invocation and store I/O records. Which solution will meet these requirements?",
     "category": "AWS AIP-C01",
     "select": 1,
@@ -4294,7 +4294,7 @@
       {
         "id": 10202,
         "problem_id": 102,
-        "content": "애플리케이션 출력을 Amazon DynamoDB 에 저장합니다. 소스 귀속(source attribution)을 포함하는 항목 수준 태그를 적용합니다. 애플리케이션 이벤트를 Amazon CloudWatch Logs 에 기록합니다. IAM 역할을 사용하여 감사 추적성을 제공합니다.",
+        "content": "애플리케이션 출력을 Amazon DynamoDB 에 저장합니다. 소스 귀속을 포함하는 항목 수준 태그를 적용합니다. 애플리케이션 이벤트를 Amazon CloudWatch Logs 에 기록합니다. IAM 역할을 사용하여 감사 추적성을 제공합니다.",
         "content_en": "Store application outputs in Amazon DynamoDB. Apply item-level tags that include source attribution. Write application events to Amazon CloudWatch Logs. Use IAM roles to provide audit traceability.",
         "is_correct": false,
         "order_num": 2
@@ -4313,7 +4313,7 @@
     "id": 104,
     "title": "Q104. 한 의료 회사가 Amazon Bedrock 을 사용하여 의료 문서를 ...",
     "title_en": "Q104. A healthcare company wants to develop ...",
-    "content": "한 의료 회사가 Amazon Bedrock 을 사용하여 의료 문서를 자동으로 요약하는 개념 증명(proof-of-concept) 애플리케이션을 개발하고자 합니다. 회사는 애플리케이션의 정확도를 검증하는 데 3주의 시간이 있습니다. 애플리케이션은 회사의 데이터 개인정보 보호 정책을 준수해야 합니다. 애플리케이션은 요약 정확도와 처리 시간을 평가하는 지표를 포함해야 합니다. 이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
+    "content": "한 의료 회사가 Amazon Bedrock 을 사용하여 의료 문서를 자동으로 요약하는 개념 증명 애플리케이션을 개발하고자 합니다. 회사는 애플리케이션의 정확도를 검증하는 데 3주의 시간이 있습니다. 애플리케이션은 회사의 데이터 개인정보 보호 정책을 준수해야 합니다. 애플리케이션은 요약 정확도와 처리 시간을 평가하는 지표를 포함해야 합니다. 이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
     "content_en": "A healthcare company wants to develop a proof-of-concept application that uses Amazon Bedrock to automatically summarize medical documents. The company has 3 weeks to validate the application's accuracy. The application must comply with the company's data privacy policies. The application must include metrics to evaluate summarization accuracy and processing time. Which solution will meet these requirements?",
     "category": "AWS AIP-C01",
     "select": 1,
@@ -4321,7 +4321,7 @@
       {
         "id": 10400,
         "problem_id": 104,
-        "content": "50~100개의 익명화된 환자 기록을 포함하는 데이터셋을 생성합니다. 보안 지식 기반과 함께 검색 증강 생성(RAG)을 구현합니다. 판정 모델(judge model)을 사용하여 세 가지 파운데이션 모델(FM)에 걸쳐 정확도 지표를 평가합니다.",
+        "content": "50~100개의 익명화된 환자 기록을 포함하는 데이터셋을 생성합니다. 보안 지식 기반과 함께 검색 증강 생성(RAG)을 구현합니다. 판정 모델을 사용하여 세 가지 파운데이션 모델(FM)에 걸쳐 정확도 지표를 평가합니다.",
         "content_en": "Create a dataset that includes 50-100 anonymized patient records. Implement Retrieval Augmented Generation (RAG) with a secure knowledge base. Use a judge model to evaluate accuracy metrics across three foundation models (FMs).",
         "is_correct": true,
         "order_num": 0
@@ -4364,7 +4364,7 @@
       {
         "id": 10500,
         "problem_id": 105,
-        "content": "고정 크기 청킹(fixed-size chunking)을 사용하도록 지식 기반을 구성합니다. 최대 청크 크기를 300토큰으로 설정하고 청크 간 10% 중첩을 설정합니다. 적절한 Amazon Bedrock 임베딩 모델을 사용합니다.",
+        "content": "고정 크기 청킹을 사용하도록 지식 기반을 구성합니다. 최대 청크 크기를 300토큰으로 설정하고 청크 간 10% 중첩을 설정합니다. 적절한 Amazon Bedrock 임베딩 모델을 사용합니다.",
         "content_en": "Configure the knowledge base to use fixed-size chunking. Set a 300-token maximum chunk size and a 10% overlap between chunks. Use an appropriate Amazon Bedrock embedding model.",
         "is_correct": false,
         "order_num": 0
@@ -4372,7 +4372,7 @@
       {
         "id": 10501,
         "problem_id": 105,
-        "content": "계층적 청킹(hierarchical chunking)을 사용하도록 지식 기반을 구성합니다. 1,000토큰을 포함하는 부모 청크와 200토큰을 포함하는 자식 청크를 사용합니다. 청크 간 50토큰 중첩을 설정합니다.",
+        "content": "계층적 청킹을 사용하도록 지식 기반을 구성합니다. 1,000토큰을 포함하는 부모 청크와 200토큰을 포함하는 자식 청크를 사용합니다. 청크 간 50토큰 중첩을 설정합니다.",
         "content_en": "Configure the knowledge base to use hierarchical chunking. Use parent chunks that contain 1,000 tokens and child chunks that contain 200 tokens. Set a 50-token overlap between chunks.",
         "is_correct": true,
         "order_num": 1
@@ -4380,7 +4380,7 @@
       {
         "id": 10502,
         "problem_id": 105,
-        "content": "의미적 청킹(semantic chunking)을 사용하도록 지식 기반을 구성합니다. 버퍼 크기 1과 85% 의 중단점 백분위 임계값을 사용하여 콘텐츠 의미를 기반으로 청크 경계를 결정합니다.",
+        "content": "의미적 청킹을 사용하도록 지식 기반을 구성합니다. 버퍼 크기 1과 85% 의 중단점 백분위 임계값을 사용하여 콘텐츠 의미를 기반으로 청크 경계를 결정합니다.",
         "content_en": "Configure the knowledge base to use semantic chunking. Use a buffer size of 1 and a breakpoint percentile threshold of 85% to determine chunk boundaries based on content meaning.",
         "is_correct": false,
         "order_num": 2
@@ -4571,7 +4571,7 @@
     "id": 110,
     "title": "Q110. 한 금융 서비스 회사가 분석가에게 분기별 실적 보고서와 재무제표를 쿼...",
     "title_en": "Q110. A financial services company wants to ...",
-    "content": "한 금융 서비스 회사가 분석가에게 분기별 실적 보고서와 재무제표를 쿼리할 수 있는 기능을 제공하는 Amazon Bedrock 애플리케이션을 개발하고자 합니다. 금융 문서는 일반적으로 5~100페이지 길이이며 표 형식 데이터와 텍스트를 모두 포함합니다. 애플리케이션은 금융 지표와 그 설명 텍스트 간의 관계를 보존하는 맥락적으로 정확한 응답을 제공해야 합니다. 정확하고 확장 가능한 검색을 지원하기 위해, 애플리케이션은 문서 분할(segmentation)과 컨텍스트 관리 전략을 통합해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
+    "content": "한 금융 서비스 회사가 분석가에게 분기별 실적 보고서와 재무제표를 쿼리할 수 있는 기능을 제공하는 Amazon Bedrock 애플리케이션을 개발하고자 합니다. 금융 문서는 일반적으로 5~100페이지 길이이며 표 형식 데이터와 텍스트를 모두 포함합니다. 애플리케이션은 금융 지표와 그 설명 텍스트 간의 관계를 보존하는 맥락적으로 정확한 응답을 제공해야 합니다. 정확하고 확장 가능한 검색을 지원하기 위해, 애플리케이션은 문서 분할과 컨텍스트 관리 전략을 통합해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
     "content_en": "A financial services company wants to develop an Amazon Bedrock application that gives analysts the ability to query quarterly earnings reports and financial statements. The financial documents are typically 5-100 pages long and contain both tabular data and text. The application must provide contextually accurate responses that preserve the relationship between financial metrics and their explanatory text. To support accurate and scalable retrieval, the application must incorporate document segmentation and context management strategies. Which solution will meet these requirements?",
     "category": "AWS AIP-C01",
     "select": 1,
@@ -4614,7 +4614,7 @@
     "id": 111,
     "title": "Q111. 한 회사가 AI 어시스턴트를 위한 새 FM 을 선택하고자 합니다. G...",
     "title_en": "Q111. A company wants to select a new FM for...",
-    "content": "한 회사가 AI 어시스턴트를 위한 새 FM 을 선택하고자 합니다. GenAI 개발자는 데이터 과학자가 다양한 파운데이션 모델(FM)의 품질과 안전성을 평가하는 것을 돕기 위해 평가 보고서를 생성해야 합니다. 데이터 과학자는 GenAI 개발자에게 평가용 샘플 프롬프트를 제공합니다. GenAI 개발자는 Amazon Bedrock 을 사용하여 보고서 생성과 평가를 자동화하고자 합니다.\n이 요구 사항을 충족하는 솔루션은 무엇입니까?",
+    "content": "한 회사가 AI 어시스턴트를 위한 새 FM 을 선택하고자 합니다. GenAI 개발자는 데이터 과학자가 다양한 파운데이션 모델의 품질과 안전성을 평가하는 것을 돕기 위해 평가 보고서를 생성해야 합니다. 데이터 과학자는 GenAI 개발자에게 평가용 샘플 프롬프트를 제공합니다. GenAI 개발자는 Amazon Bedrock 을 사용하여 보고서 생성과 평가를 자동화하고자 합니다.\n이 요구 사항을 충족하는 솔루션은 무엇입니까?",
     "content_en": "A company wants to select a new FM for its AI assistant. A GenAI developer needs to generate evaluation reports to help a data scientist assess the quality and safety of various foundation models FMs. The data scientist provides the GenAI developer with sample prompts for evaluation. The GenAI developer wants to use Amazon Bedrock to automate report generation and evaluation. Which solution will meet this requirement?",
     "category": "AWS AIP-C01",
     "select": 1,
@@ -4630,7 +4630,7 @@
       {
         "id": 11101,
         "problem_id": 111,
-        "content": "샘플 프롬프트를 단일 JSONL 문서로 결합합니다. 문서를 Amazon S3 버킷에 저장합니다. 판정 모델(judge model)을 사용하는 Amazon Bedrock 평가 작업을 생성합니다. S3 위치를 입력으로, 다른 S3 위치를 출력으로 지정합니다. 각 FM 에 대해 평가 작업을 실행하고 FM 을 생성기(generator)로 선택합니다.",
+        "content": "샘플 프롬프트를 단일 JSONL 문서로 결합합니다. 문서를 Amazon S3 버킷에 저장합니다. 판정 모델을 사용하는 Amazon Bedrock 평가 작업을 생성합니다. S3 위치를 입력으로, 다른 S3 위치를 출력으로 지정합니다. 각 FM 에 대해 평가 작업을 실행하고 FM 을 생성기로 선택합니다.",
         "content_en": "Combine the sample prompts into a single JSONL document. Store the document in an Amazon S3 bucket. Create an Amazon Bedrock evaluation job that uses a judge model. Specify the S3 location as input and a different S3 location as output. Run an evaluation job for each FM and select the FM as the generator.",
         "is_correct": true,
         "order_num": 1
@@ -4638,7 +4638,7 @@
       {
         "id": 11102,
         "problem_id": 111,
-        "content": "샘플 프롬프트를 단일 JSONL 문서로 결합합니다. 문서를 Amazon S3 버킷에 저장합니다. 판정 모델을 사용하는 Amazon Bedrock 평가 작업을 생성합니다. S3 위치를 입력으로, Amazon QuickSight 를 출력으로 지정합니다. 각 FM 에 대해 평가 작업을 실행하고 FM 을 평가자(evaluator)로 선택합니다.",
+        "content": "샘플 프롬프트를 단일 JSONL 문서로 결합합니다. 문서를 Amazon S3 버킷에 저장합니다. 판정 모델을 사용하는 Amazon Bedrock 평가 작업을 생성합니다. S3 위치를 입력으로, Amazon QuickSight 를 출력으로 지정합니다. 각 FM 에 대해 평가 작업을 실행하고 FM 을 평가자로 선택합니다.",
         "content_en": "Combine the sample prompts into a single JSONL document. Store the document in an Amazon S3 bucket. Create an Amazon Bedrock evaluation job that uses a judge model. Specify the S3 location as input and Amazon QuickSight as output. Run an evaluation job for each FM and select the FM as the evaluator.",
         "is_correct": false,
         "order_num": 2
@@ -4689,7 +4689,7 @@
       {
         "id": 11403,
         "problem_id": 114,
-        "content": "FM 에 대한 프롬프트에서 출력 표시자(output indicator)를 사용하여 제품 추천 내에 새 프로모션 메시지를 포함하라는 요구 사항을 강화합니다.",
+        "content": "FM 에 대한 프롬프트에서 출력 표시자를 사용하여 제품 추천 내에 새 프로모션 메시지를 포함하라는 요구 사항을 강화합니다.",
         "content_en": "Reinforce the requirement to include the new promotional message within product recommendations by using an output indicator in prompts to the FM.",
         "is_correct": true,
         "order_num": 3
@@ -4751,7 +4751,7 @@
     "id": 117,
     "title": "Q117. 한 의료 회사가 Amazon Bedrock 을 사용하여 생성형 AI(...",
     "title_en": "Q117. A medical company is creating a genera...",
-    "content": "한 의료 회사가 Amazon Bedrock 을 사용하여 생성형 AI(GenAI) 시스템을 만들고 있습니다. 시스템은 다양한 소스의 데이터를 처리하며 종단 간 데이터 계보(data lineage)를 유지해야 합니다. 시스템은 또한 실시간 개인 식별 정보(PII) 필터링과 감사 추적을 사용하여 규정 준수를 자동으로 보고해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
+    "content": "한 의료 회사가 Amazon Bedrock 을 사용하여 생성형 AI(GenAI) 시스템을 만들고 있습니다. 시스템은 다양한 소스의 데이터를 처리하며 종단 간 데이터 계보를 유지해야 합니다. 시스템은 또한 실시간 개인 식별 정보(PII) 필터링과 감사 추적을 사용하여 규정 준수를 자동으로 보고해야 합니다.\n이러한 요구 사항을 충족하는 솔루션은 무엇입니까?",
     "content_en": "A medical company is creating a generative AI (GenAI) system by using Amazon Bedrock. The system processes data from various sources and must maintain end-to-end data lineage. The system must also use real- time personally identifiable information (PII) filtering and audit trails to automatically report compliance. Which solution will meet these requirements?",
     "category": "AWS AIP-C01",
     "select": 1,
@@ -4818,7 +4818,7 @@
       {
         "id": 11802,
         "problem_id": 118,
-        "content": "Microsoft Entra ID 를 사용하여 인증하기 위해 IAM 에서 SAML 자격 증명 공급자(IdP)를 생성합니다. IAM 권한 경계(permissions boundaries)를 사용하여 부서 역할의 특정 모델 패밀리에 대한 액세스를 제한합니다. 프라이빗 네트워크 연결을 유지하기 위해 VPC 라우팅이 있는 퍼블릭 Amazon Bedrock API 엔드포인트를 구성합니다. 모델 상호 작용의 감사 로그를 관리하기 위해 Amazon S3 Lifecycle 규칙과 함께 CloudTrail 을 설정합니다.",
+        "content": "Microsoft Entra ID 를 사용하여 인증하기 위해 IAM 에서 SAML 자격 증명 공급자(IdP)를 생성합니다. IAM 권한 경계를 사용하여 부서 역할의 특정 모델 패밀리에 대한 액세스를 제한합니다. 프라이빗 네트워크 연결을 유지하기 위해 VPC 라우팅이 있는 퍼블릭 Amazon Bedrock API 엔드포인트를 구성합니다. 모델 상호 작용의 감사 로그를 관리하기 위해 Amazon S3 Lifecycle 규칙과 함께 CloudTrail 을 설정합니다.",
         "content_en": "Create a SAML identity provider (IdP) in IAM to authenticate by using Microsoft Entra ID. Use IAM permissions boundaries to limit department roles'access to specific model families. Configure public Amazon Bedrock API endpoints with VPC routing to maintain private network connectivity. Set up CloudTrail with Amazon S3 Lifecycle rules to manage audit logs of model interactions.",
         "is_correct": false,
         "order_num": 2
@@ -5025,7 +5025,7 @@
       {
         "id": 12500,
         "problem_id": 125,
-        "content": "별도의 지식 기반을 사용하여 각 에이전트의 데이터를 격리합니다. IAM 필터링을 사용하여 각 지식 기반에 대한 액세스를 제어합니다. 환자 문의에 대한 자연어 의도 분류를 수행하는 감독자 에이전트(supervisor agent)를 배포합니다. 감독자 에이전트가 부서별 쿼리에 응답하기 위해 쿼리를 전문화된 협력자 에이전트(collaborator agent)로 라우팅하도록 구성합니다. 각 전문화된 협력자 에이전트가 에이전트의 부서별 지식 기반과 함께 검색 증강 생성(RAG)을 사용하도록 구성합니다.",
+        "content": "별도의 지식 기반을 사용하여 각 에이전트의 데이터를 격리합니다. IAM 필터링을 사용하여 각 지식 기반에 대한 액세스를 제어합니다. 환자 문의에 대한 자연어 의도 분류를 수행하는 감독자 에이전트를 배포합니다. 감독자 에이전트가 부서별 쿼리에 응답하기 위해 쿼리를 전문화된 협력자 에이전트로 라우팅하도록 구성합니다. 각 전문화된 협력자 에이전트가 에이전트의 부서별 지식 기반과 함께 검색 증강 생성(RAG)을 사용하도록 구성합니다.",
         "content_en": "Isolate data for each agent by using separate knowledge bases. Use IAM filtering to control access to each knowledge base. Deploy a supervisor agent to perform natural language intent classification on patient inquiries. Configure the supervisor agent to route queries to specialized collaborator agents to respond to department-specific queries. Configure each specialized collaborator agent to use Retrieval Augmented Generation (RAG) with the agent's department-specific knowledge base.",
         "is_correct": true,
         "order_num": 0
@@ -5283,7 +5283,7 @@
       {
         "id": 13200,
         "problem_id": 132,
-        "content": "컨테이너 시작 시 모델 사전 로드를 활성화합니다. 단일 추론 패스에서 여러 사용자 요청을 함께 처리하기 위해 동적 배칭(dynamic batching)을 구현합니다.",
+        "content": "컨테이너 시작 시 모델 사전 로드를 활성화합니다. 단일 추론 패스에서 여러 사용자 요청을 함께 처리하기 위해 동적 배칭을 구현합니다.",
         "content_en": "Enable model preload upon container startup. Implement dynamic batching to process multiple user requests together in a single inference pass.",
         "is_correct": true,
         "order_num": 0

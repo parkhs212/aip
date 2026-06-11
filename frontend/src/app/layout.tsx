@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Link href="/quiz?mode=sequential" className="text-sm text-gray-600 hover:text-blue-600 font-medium">순서대로</Link>
           <Link href="/quiz?mode=random" className="text-sm text-gray-600 hover:text-indigo-600 font-medium">랜덤</Link>
           <Link href="/answers" className="text-sm text-gray-600 hover:text-gray-900 font-medium">정답보기</Link>
+          <Link href="/notes" className="text-sm text-gray-600 hover:text-amber-600 font-medium">오답노트</Link>
         </nav>
         <main className="max-w-3xl mx-auto px-4 py-8">{children}</main>
       </body>

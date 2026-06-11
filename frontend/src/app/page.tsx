@@ -25,6 +25,12 @@ export default function Home() {
           정답 보기
         </Link>
       </div>
+      <Link
+        href="/notes"
+        className="mt-4 inline-block text-amber-600 hover:text-amber-700 font-medium text-sm"
+      >
+        ★ 오답노트 보기
+      </Link>
     </div>
   )
 }

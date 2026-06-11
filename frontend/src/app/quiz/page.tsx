@@ -3,6 +3,7 @@ import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { api, Problem, Lang, problemText, choiceText } from '@/lib/api'
 import { useLang, LangToggle } from '@/lib/lang'
+import { useNotes } from '@/lib/notes'
 import {
   fmt, buildWordFreq, loadLS, mergeGreenPhrases,
   HighlightedText, LS_CUSTOM, LS_EXCLUDED,
@@ -37,6 +38,7 @@ function QuizContent() {
   const [customGreen, setCustomGreen] = useState<string[]>([])
   const [excluded, setExcluded] = useState<Set<string>>(new Set())
   const [highlightOn, setHighlightOn] = useState(false)
+  const { notes, toggleMark, addWrong } = useNotes()
 
   useEffect(() => {
     api.getAllProblems()
@@ -93,6 +95,7 @@ function QuizContent() {
     if (!isMulti) {
       setSelectedSet(new Set([choiceId]))
       setSubmitted(true)
+      if (!isCorrect) addWrong(problem.id)
     } else {
       setSelectedSet(prev => {
         const next = new Set(prev)
@@ -104,7 +107,15 @@ function QuizContent() {
   }
 
   const handleSubmit = () => {
-    if (isMulti && selectedSet.size > 0 && !answered) setSubmitted(true)
+    if (isMulti && selectedSet.size > 0 && !answered) {
+      setSubmitted(true)
+      const correctIds = new Set(problem.choices?.filter(c => c.is_correct).map(c => c.id))
+      let allCorrect = selectedSet.size === correctIds.size
+      if (allCorrect) {
+        for (const id of selectedSet) if (!correctIds.has(id)) { allCorrect = false; break }
+      }
+      if (!allCorrect) addWrong(problem.id)
+    }
   }
 
   const isAllCorrect = (() => {
@@ -130,6 +141,17 @@ function QuizContent() {
           {mode === 'random' ? '랜덤 풀기' : '순서대로 풀기'}
         </span>
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => toggleMark(problem.id)}
+            title="헷갈리는 문제를 오답노트에 등록/해제"
+            className={`px-2 py-1 rounded-lg text-xs font-medium border transition-colors ${
+              notes[problem.id]
+                ? 'bg-amber-50 text-amber-600 border-amber-300'
+                : 'bg-white text-gray-400 border-gray-200 hover:bg-gray-50'
+            }`}
+          >
+            {notes[problem.id] ? '★ 노트' : '☆ 노트'}
+          </button>
           <button
             onClick={toggleHighlight}
             title="정답 보기 시 핵심 문구 초록 강조"

@@ -11,3 +11,5 @@ frontend/out/
 _migration/
 *.bak
 *.bak_*
+
+frontend/tsconfig.tsbuildinfo

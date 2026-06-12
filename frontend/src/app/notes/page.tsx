@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { api, Problem, Lang, problemText, choiceText } from '@/lib/api'
 import { useLang, LangToggle } from '@/lib/lang'
 import { useNotes } from '@/lib/notes'
@@ -72,6 +73,22 @@ export default function NotesPage() {
           <span className="text-amber-500 font-semibold">★</span> 마킹한 문제와 틀린 문제가 모입니다 · 각 카드의{' '}
           <span className="text-red-400 font-bold">완료/제거</span>로 노트에서 뺄 수 있어요
         </p>
+        {noted.length > 0 && (
+          <div className="flex items-center gap-2 mt-3">
+            <Link
+              href="/quiz?source=notes&mode=sequential"
+              className="px-3 py-1.5 rounded-lg bg-amber-500 text-white text-xs font-semibold hover:bg-amber-600 transition-colors"
+            >
+              오답노트 풀기
+            </Link>
+            <Link
+              href="/quiz?source=notes&mode=random"
+              className="px-3 py-1.5 rounded-lg bg-indigo-500 text-white text-xs font-semibold hover:bg-indigo-600 transition-colors"
+            >
+              랜덤으로 풀기
+            </Link>
+          </div>
+        )}
       </div>
 
       {noted.length === 0 ? (

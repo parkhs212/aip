@@ -3,7 +3,8 @@ import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { api, Problem, Lang, problemText, choiceText } from '@/lib/api'
 import { useLang, LangToggle } from '@/lib/lang'
-import { useNotes } from '@/lib/notes'
+import { useNotes, loadNotes } from '@/lib/notes'
+import { loadKnown } from '@/lib/known'
 import {
   fmt, buildWordFreq, loadLS, mergeGreenPhrases,
   HighlightedText, LS_CUSTOM, LS_EXCLUDED,
@@ -24,6 +25,8 @@ function shuffle<T>(arr: T[]): T[] {
 function QuizContent() {
   const searchParams = useSearchParams()
   const mode = searchParams.get('mode') === 'random' ? 'random' : 'sequential'
+  const sourceParam = searchParams.get('source')
+  const source = sourceParam === 'notes' || sourceParam === 'review' ? sourceParam : null
 
   const [lang, setLang] = useLang()
   const [problems, setProblems] = useState<Problem[]>([])
@@ -44,7 +47,14 @@ function QuizContent() {
     api.getAllProblems()
       .then(ps => {
         setProblems(ps)
-        const idx = Array.from({ length: ps.length }, (_, i) => i)
+        let idx = Array.from({ length: ps.length }, (_, i) => i)
+        if (source === 'notes') {
+          const n = loadNotes()
+          idx = idx.filter(i => !!n[ps[i].id])
+        } else if (source === 'review') {
+          const k = loadKnown()
+          idx = idx.filter(i => !k.has(ps[i].id))
+        }
         setOrder(mode === 'random' ? shuffle(idx) : idx)
         setWordFreqByLang({ ko: buildWordFreq(ps, 'ko'), en: buildWordFreq(ps, 'en') })
         setLoading(false)
@@ -53,7 +63,7 @@ function QuizContent() {
     setCustomGreen(loadLS(LS_CUSTOM))
     setExcluded(new Set(loadLS(LS_EXCLUDED)))
     setHighlightOn(localStorage.getItem(LS_HIGHLIGHT) === '1')
-  }, [mode])
+  }, [mode, source])
 
   const toggleHighlight = () => {
     setHighlightOn(v => {
@@ -64,9 +74,9 @@ function QuizContent() {
   }
 
   const reset = () => { setSelectedSet(new Set()); setSubmitted(false); setShowAnswer(false) }
-  const goNext = () => { if (cursor < problems.length - 1) { setCursor(c => c + 1); reset() } }
+  const goNext = () => { if (cursor < order.length - 1) { setCursor(c => c + 1); reset() } }
   const goPrev = () => { if (cursor > 0) { setCursor(c => c - 1); reset() } }
-  const goTo = (idx: number) => { if (idx >= 0 && idx < problems.length) { setCursor(idx); reset() } }
+  const goTo = (idx: number) => { if (idx >= 0 && idx < order.length) { setCursor(idx); reset() } }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -79,6 +89,15 @@ function QuizContent() {
 
   if (loading) return <div className="text-center py-20 text-gray-400">불러오는 중...</div>
   if (error) return <div className="text-center py-20 text-red-400">{error}</div>
+
+  if (order.length === 0) {
+    const emptyMsg = source === 'notes'
+      ? '풀어볼 오답노트 문제가 없습니다.'
+      : source === 'review'
+      ? '복습할 문제가 없습니다. (모든 문제를 "알아요"로 체크했어요)'
+      : '문제가 없습니다.'
+    return <div className="text-center py-20 text-gray-400 text-sm">{emptyMsg}</div>
+  }
 
   const problem = problems[order[cursor]]
   if (!problem) return null
@@ -126,7 +145,8 @@ function QuizContent() {
     return true
   })()
 
-  const progress = ((cursor + 1) / problems.length) * 100
+  const progress = ((cursor + 1) / order.length) * 100
+  const sourceLabel = source === 'notes' ? '오답노트 풀기' : source === 'review' ? '복습 풀기' : null
   const modeColor = mode === 'random' ? 'text-indigo-500' : 'text-blue-500'
   const barColor = mode === 'random' ? 'bg-indigo-500' : 'bg-blue-500'
   const nextColor = mode === 'random'
@@ -138,7 +158,8 @@ function QuizContent() {
       {/* 모드 + 진행률 + 언어 토글 */}
       <div className="flex items-center justify-between text-xs mb-2">
         <span className={`font-semibold ${modeColor}`}>
-          {mode === 'random' ? '랜덤 풀기' : '순서대로 풀기'}
+          {sourceLabel ?? (mode === 'random' ? '랜덤 풀기' : '순서대로 풀기')}
+          {sourceLabel && <span className="text-gray-400 font-normal"> · {mode === 'random' ? '랜덤' : '순서대로'}</span>}
         </span>
         <div className="flex items-center gap-2">
           <button
@@ -174,7 +195,7 @@ function QuizContent() {
               <option key={i} value={i}>Q{qi + 1}</option>
             ))}
           </select>
-          <span className="text-gray-400">{cursor + 1} / {problems.length}</span>
+          <span className="text-gray-400">{cursor + 1} / {order.length}</span>
         </div>
       </div>
       <div className="w-full bg-gray-200 rounded-full h-1 mb-6">
@@ -283,7 +304,7 @@ function QuizContent() {
 
         <button
           onClick={goNext}
-          disabled={cursor === problems.length - 1}
+          disabled={cursor === order.length - 1}
           className={`flex-1 px-4 py-3 rounded-xl text-white font-medium text-sm transition-colors ${nextColor} disabled:cursor-default`}
         >
           다음 →
